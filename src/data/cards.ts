@@ -4,9 +4,17 @@ import entries from './cards.json'
 
 export type CardData = (typeof entries)[number] & {
 	id: number
+	slug: string
 	front: string
 	thumbnail: string
 }
+
+const slugify = (name: string) =>
+	name
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '')
+		.toLowerCase()
+		.replace(/\s+/g, '-')
 
 // import.meta.env.BASE_URL always ends in "/"; prefixing with it keeps
 // these public/ paths correct whether the app is served at the domain
@@ -20,6 +28,7 @@ export const CARDS: CardData[] = entries.map((entry, i) => {
 	return {
 		...entry,
 		id: i + 1,
+		slug: slugify(entry.name),
 		front: entry.image ? `${cardsPath}/${entry.image}` : placeholder,
 		thumbnail: entry.image ? `${cardsPath}/thumbs/${entry.image}` : placeholder,
 	}

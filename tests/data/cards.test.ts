@@ -79,3 +79,13 @@ describe('CARDS_EN', () => {
 		expect(new Set(CARDS_EN.map((card) => card.name)).size).toBe(36)
 	})
 })
+
+describe('card slugs', () => {
+	it('are readable, unique and free of accents', () => {
+		expect(CARDS[0].slug).toBe('cavaleiro')
+		expect(CARDS[23].slug).toBe('coracao')
+		expect(CARDS[34].slug).toBe('ancora')
+		expect(new Set(CARDS.map((card) => card.slug)).size).toBe(36)
+		for (const card of CARDS) expect(card.slug).toMatch(/^[a-z-]+$/)
+	})
+})

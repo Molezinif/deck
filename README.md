@@ -11,7 +11,9 @@ The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) i
 - Card page: the card floats over the blurred grid, among golden dust, with a soft shadow. It leans slightly toward the pointer and spins when dragged. On release it settles on the nearest face, front or back, and a quick flick keeps its momentum.
 - The ‹ › buttons and the ← → keys move to the previous or next card.
 - The expand button enlarges the card. On desktop and in landscape the card sits next to the text; on portrait phones the text rises as a sheet over the card.
-- Close with the × button, with Esc, or by collapsing the expanded card.
+- Close with the × button, with Esc, by collapsing the expanded card, or with the browser's back button or gesture.
+- Every card has its own address, like `/deck/#/cavaleiro`, so a card can be linked to directly.
+- The 3D code (three.js) is only downloaded when it's needed, so the grid shows up fast.
 - Portuguese by default, with an English version one click away in the toolbar at the top right. The choice is remembered.
 - Light and dark themes, following the system on the first visit. Switching reveals the new theme through the star from the card back, which pops in at the center, spins and bursts to fill the screen (View Transitions).
 - With "reduce motion" turned on in the system, animations become simple fades.

@@ -16,3 +16,5 @@ createRoot(root).render(
 		<App />
 	</StrictMode>,
 )
+
+setTimeout(() => import('./components/CardShowcase/CardShowcase.tsx'), 2000)

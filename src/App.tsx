@@ -1,26 +1,58 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { CardDetail } from './components/CardDetail/CardDetail.tsx'
 import { Gallery } from './components/Gallery/Gallery.tsx'
 import { Toolbar } from './components/Toolbar/Toolbar.tsx'
-import { DECKS } from './data/cards.ts'
+import { CARDS, DECKS } from './data/cards.ts'
 import { getLocale } from './paraglide/runtime.js'
 import { withViewTransition } from './viewTransition.ts'
 
+const hashOf = (id: number) => `#/${CARDS.find((card) => card.id === id)?.slug}`
+
+const idFromHash = () =>
+	CARDS.find((card) => `#/${card.slug}` === location.hash)?.id ?? null
+
+const withoutHash = () => location.pathname + location.search
+
 export function App() {
 	const cards = DECKS[getLocale()]
-	const [selectedId, setSelectedId] = useState<number | null>(null)
-	const [returnId, setReturnId] = useState<number | null>(null)
+	const [selectedId, setSelectedId] = useState(idFromHash)
+	const [returnId, setReturnId] = useState(idFromHash)
 	const index = cards.findIndex((card) => card.id === selectedId)
+
+	useEffect(() => {
+		const syncWithUrl = () => {
+			const id = idFromHash()
+			if (id !== null) flushSync(() => setReturnId(id))
+			withViewTransition(() => setSelectedId(id))
+		}
+		window.addEventListener('popstate', syncWithUrl)
+		return () => window.removeEventListener('popstate', syncWithUrl)
+	}, [])
 
 	const open = (id: number) => {
 		flushSync(() => setReturnId(id))
-		withViewTransition(() => setSelectedId(id))
+		withViewTransition(() => {
+			history.pushState({ opened: true }, '', hashOf(id))
+			setSelectedId(id)
+		})
 	}
 
 	const navigate = (id: number) => {
+		history.replaceState(history.state, '', hashOf(id))
 		setReturnId(id)
 		setSelectedId(id)
+	}
+
+	// Closing a card opened from the grid goes back in history, so the
+	// phone's back gesture and the close button end in the same place.
+	const close = () => {
+		if (history.state?.opened) {
+			history.back()
+			return
+		}
+		history.replaceState(null, '', withoutHash())
+		withViewTransition(() => setSelectedId(null))
 	}
 
 	const neighbor = (step: number) =>
@@ -32,6 +64,7 @@ export function App() {
 			<Gallery
 				cards={cards}
 				activeId={selectedId === null ? returnId : null}
+				inert={index !== -1}
 				onSelect={open}
 			/>
 			{index !== -1 && (
@@ -40,7 +73,7 @@ export function App() {
 					previous={neighbor(-1)}
 					next={neighbor(1)}
 					onSelect={navigate}
-					onClose={() => withViewTransition(() => setSelectedId(null))}
+					onClose={close}
 				/>
 			)}
 		</>

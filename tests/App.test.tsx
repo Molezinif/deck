@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from '../src/App.tsx'
 import { CARDS, CARDS_EN } from '../src/data/cards.ts'
@@ -57,11 +57,39 @@ describe('App', () => {
 		expect(detail()?.textContent).toBe(CARDS[0].name)
 	})
 
-	it('closes the detail', () => {
+	it('closes the detail', async () => {
 		render(<App />)
 		click('carta 23')
 		click('fechar detalhe')
+		await waitFor(() => expect(detail()).toBeNull())
+		expect(location.hash).toBe('')
+	})
+
+	it('gives each open card its own address', () => {
+		render(<App />)
+		click('carta 23')
+		expect(location.hash).toBe('#/rato')
+	})
+
+	it('opens the card in the address', () => {
+		history.replaceState(null, '', '/#/coracao')
+		render(<App />)
+		expect(detail()?.textContent).toBe('Coração')
+	})
+
+	it('closes the card when going back', async () => {
+		render(<App />)
+		click('carta 1')
+		act(() => history.back())
+		await waitFor(() => expect(detail()).toBeNull())
+	})
+
+	it('closes a card opened from a link without leaving the site', () => {
+		history.replaceState(null, '', '/#/coracao')
+		render(<App />)
+		click('fechar detalhe')
 		expect(detail()).toBeNull()
+		expect(location.hash).toBe('')
 	})
 
 	it('defaults to Portuguese whatever the browser language', () => {

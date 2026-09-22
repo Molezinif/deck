@@ -1,10 +1,15 @@
-import { useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import type { CardData } from '../../data/cards.ts'
 import { m } from '../../paraglide/messages.js'
 import { useKeyDown } from '../../useKeyDown.ts'
 import { CardContent } from '../CardContent/CardContent.tsx'
-import { CardShowcase } from '../CardShowcase/CardShowcase.tsx'
 import './CardDetail.css'
+
+const CardShowcase = lazy(() =>
+	import('../CardShowcase/CardShowcase.tsx').then((module) => ({
+		default: module.CardShowcase,
+	})),
+)
 
 type CardDetailProps = {
 	card: CardData
@@ -24,6 +29,15 @@ export function CardDetail({
 	const [expanded, setExpanded] = useState(false)
 	const [direction, setDirection] = useState<1 | -1>(1)
 	const slot = useRef<HTMLDivElement>(null)
+	const closeButton = useRef<HTMLButtonElement>(null)
+	const [opener] = useState(() => document.activeElement)
+
+	useEffect(() => {
+		closeButton.current?.focus({ preventScroll: true })
+		return () => {
+			if (opener instanceof HTMLElement) opener.focus({ preventScroll: true })
+		}
+	}, [opener])
 
 	const go = (target: CardData, step: 1 | -1) => {
 		setDirection(step)
@@ -46,15 +60,18 @@ export function CardDetail({
 			aria-label={card.name}
 		>
 			<div className="card-detail-canvas">
-				<CardShowcase
-					card={card}
-					direction={direction}
-					upcoming={[previous.front, next.front]}
-					slot={slot}
-				/>
+				<Suspense fallback={null}>
+					<CardShowcase
+						card={card}
+						direction={direction}
+						upcoming={[previous.front, next.front]}
+						slot={slot}
+					/>
+				</Suspense>
 			</div>
 			<button
 				type="button"
+				ref={closeButton}
 				className="card-detail-button card-detail-close"
 				onClick={onClose}
 				aria-label={m.close()}

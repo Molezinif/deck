@@ -1,11 +1,10 @@
-import { useTexture } from '@react-three/drei'
 import {
 	type CSSProperties,
 	type PointerEvent,
 	useLayoutEffect,
 	useRef,
 } from 'react'
-import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
+import type { CardData } from '../../data/cards.ts'
 import { m } from '../../paraglide/messages.js'
 import './Gallery.css'
 
@@ -33,7 +32,12 @@ const CREDITS = [
 type GalleryProps = {
 	cards: CardData[]
 	activeId: number | null
+	inert?: boolean
 	onSelect: (id: number) => void
+}
+
+const preload = (url: string) => {
+	new Image().src = url
 }
 
 function tilt(event: PointerEvent<HTMLElement>) {
@@ -54,7 +58,7 @@ function untilt(event: PointerEvent<HTMLElement>) {
 	}
 }
 
-export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
+export function Gallery({ cards, activeId, inert, onSelect }: GalleryProps) {
 	const active = useRef<HTMLButtonElement>(null)
 
 	useLayoutEffect(() => {
@@ -62,7 +66,7 @@ export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
 	}, [activeId])
 
 	return (
-		<div className="gallery">
+		<div className="gallery" inert={inert}>
 			<div className="gallery-grid">
 				{cards.map((card, i) => (
 					<button
@@ -72,7 +76,7 @@ export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
 						className="gallery-item"
 						style={{ '--order': i } as CSSProperties}
 						onClick={() => onSelect(card.id)}
-						onPointerEnter={() => useTexture.preload([card.front, BACK_IMAGE])}
+						onPointerEnter={() => preload(card.front)}
 						onPointerMove={tilt}
 						onPointerLeave={untilt}
 					>
