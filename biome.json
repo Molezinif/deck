@@ -5,30 +5,22 @@
 		"clientKind": "git",
 		"useIgnoreFile": true
 	},
-	"files": {
-		"ignoreUnknown": false
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab"
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"preset": "recommended"
-		}
-	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double"
+			"quoteStyle": "single",
+			"semicolons": "asNeeded"
 		}
 	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
+	"overrides": [
+		{
+			"includes": ["src/components/Deck/**"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noStaticElementInteractions": "off"
+					}
+				}
 			}
 		}
-	}
+	]
 }
