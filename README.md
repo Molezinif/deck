@@ -16,6 +16,7 @@ The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) i
 - Every card has its own address, like `/deck/cavaleiro/`, so a card can be linked to directly. Old `#/cavaleiro` links still work.
 - Link previews: the build writes a page per card with its own title, description and a 1200×630 preview image (the card over its back), so a link shared on WhatsApp or Instagram shows that card.
 - The 3D code (three.js) is only downloaded when it's needed, so the grid shows up fast.
+- Installable as an app (PWA): "Add to Home Screen" on iPhone, "Install app" on Android and desktop browsers. After the first visit it works offline, with every card, text and sound saved on the device. No app store involved.
 - Sound and touch: real card sounds when a card opens, turns, lands or the theme changes, with a mute button in the toolbar. On phones a short vibration goes with each one, plus a light tick for every face that goes past while spinning a card (Vibration API, so Android only: iOS Safari has no way to vibrate from a web page).
 - Portuguese by default, with an English version one click away in the toolbar at the top right. The choice is remembered.
 - Light and dark themes, following the system on the first visit. Switching reveals the new theme through the star from the card back, which pops in at the center, spins and bursts to fill the screen (View Transitions).
@@ -63,6 +64,7 @@ On every commit, Lefthook runs Biome on the staged files, the type check and the
 public/cards/            card artwork and the back (back.svg)
 public/cards/thumbs/     artwork thumbnails, used in the grid
 public/sounds/           card sounds (Kenney, CC0)
+public/icons/            app icons for the home screen (PWA)
 messages/                interface texts, one file per language
 project.inlang/          Paraglide settings: languages and message files
 src/
@@ -160,6 +162,7 @@ Constants sit at the top of each file:
 | Card size on its page, background blur and the side by side breakpoint | `src/components/CardDetail/CardDetail.css` |
 | Lights and reflections on the card | `src/components/SceneLighting/SceneLighting.tsx` |
 | Which sound plays when, volume and vibration length | `src/feedback.ts` |
+| App name, colors, icons and what gets saved for offline use | `vite.config.ts` (`VitePWA`) |
 
 ## Tests
 
