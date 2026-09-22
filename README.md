@@ -1,23 +1,23 @@
-# Baralho Cigano 3D
+# Baralho Cigano
 
-As 36 cartas do baralho cigano dispostas numa mesa 3D. Clique numa carta para trazê-la para perto, gire-a com o mouse ou o dedo e leia a wiki dela: significado, amor, trabalho, saúde e síntese.
+As 36 cartas do baralho cigano numa grade, como um feed. Toque numa carta para abrir a página dela: uma vitrine 3D (gire com o mouse ou o dedo, veja a luz refletir na carta) e a wiki completa — significado, amor, trabalho, saúde e síntese.
 
-![Carta em foco com a wiki aberta](docs/preview.png)
+![Grade de cartas e a página de uma carta aberta](docs/preview.png)
 
 ## Recursos
 
-- Mesa com as 36 cartas em 9 colunas × 4 fileiras, com câmera fixa.
-- Carta em foco: ela sai da mesa, vem para a frente da câmera e o fundo desfoca (depth of field).
-- Arraste para girar a carta e ver o verso. O verniz das duas faces reflete as luzes do ambiente, e o reflexo muda com o ângulo, como numa carta de verdade.
-- Wiki de cada carta, que fecha com clique fora, no × ou com Esc.
-- Cartas com cantos arredondados e imagens trocáveis.
+- Grade responsiva com as 36 cartas, que se adapta a qualquer tela.
+- Cada carta "salta" ao passar o mouse (ou ao tocar e segurar no celular).
+- Página da carta: uma vitrine 3D com a carta sozinha, que gira ao arrastar e reflete as luzes do ambiente. Um botão expande a vitrine para ocupar a tela quase toda.
+- No desktop, a página usa vitrine e texto lado a lado; no celular, empilhados.
+- Fecha com o botão ×, com Esc, ou recolhendo a vitrine expandida.
 
 ## Stack
 
 | Área | Ferramentas |
 | --- | --- |
 | App | React 19, TypeScript, Vite |
-| 3D | three.js, React Three Fiber, drei, postprocessing |
+| 3D | three.js, React Three Fiber, drei |
 | Testes | Vitest, Testing Library, React Three Test Renderer |
 | Qualidade | Biome (lint e formatação), Lefthook (git hooks) |
 
@@ -55,20 +55,21 @@ src/
   data/
     cards.json           conteúdo da wiki, na ordem do baralho
     cards.ts             junta o conteúdo com id e caminho da imagem
+  useEscapeKey.ts         fecha um painel ao apertar Esc
   components/
-    Table/               canvas, câmera, luzes, reflexos, partículas e clique fora
-    Deck/
-      Deck.tsx           carrega as texturas e posiciona as cartas
-      Card.tsx           uma carta: animação, hover, arraste e acabamento
-      layout.ts          posição de cada carta na mesa e em foco
-      geometry.ts        formato da carta
-    BackgroundBlur/      desfoque do fundo com a carta em foco
-    CardWiki/            painel com os dados da carta
-tests/                   espelha a estrutura de src/
-docs/                    imagens do README
+    Gallery/              a grade de cartas
+    CardDetail/            a página de uma carta: vitrine 3D + conteúdo, com o botão de expandir
+    CardShowcase/          o canvas 3D com uma única carta em destaque
+    CardContent/           nome, palavras-chave e as seções da wiki (usado só por CardDetail)
+    Card/
+      Card.tsx             a carta 3D: formato, material, arraste, giro
+      geometry.ts          formato da carta e proporção das artes
+    SceneLighting/          luzes e reflexos, compartilhados pelas cenas 3D
+tests/                    espelha a estrutura de src/
+docs/                     imagens do README
 ```
 
-Cada componente fica na sua própria pasta, com o seu teste no mesmo caminho dentro de `tests/`. O estado global é só o `selectedId` no `App`. O resto é derivado dele ou é estado local de cada carta.
+Cada componente fica na sua própria pasta, com o seu teste no mesmo caminho dentro de `tests/`. O estado é só o `selectedId` no `App`.
 
 ## Personalizando o baralho
 
@@ -80,9 +81,9 @@ Coloque as artes em `public/cards/` e aponte cada carta para o seu arquivo com o
 { "image": "cavaleiro1.webp", "name": "Cavaleiro", … }
 ```
 
-Uma carta sem `image` usa a imagem provisória `NN.svg` (01 Cavaleiro … 36 Cruz). O verso é o `back.svg`, e para trocar o arquivo edite `src/components/Table/Table.tsx`.
+Uma carta sem `image` usa a imagem provisória `NN.svg` (01 Cavaleiro … 36 Cruz). O verso é o `public/cards/back.svg`, referenciado em `src/components/CardShowcase/CardShowcase.tsx`.
 
-A carta 3D segue a proporção das artes, 791×1169. Se as suas artes tiverem outra proporção, ajuste `ARTWORK_ASPECT` em `src/components/Deck/geometry.ts`. Na tela a carta nunca aparece maior que uns 600 px de altura, então dá para reduzir as imagens para esse tamanho e salvar em WebP. Isso diminui bastante o download.
+A carta 3D segue a proporção das artes, 791×1169. Se as suas artes tiverem outra proporção, ajuste `ARTWORK_ASPECT` em `src/components/Card/geometry.ts`. As miniaturas da grade nunca passam de uns 300 px de largura, então dá para reduzir as imagens para esse tamanho e salvar em WebP — isso diminui bastante o download.
 
 ### Conteúdo
 
@@ -102,7 +103,7 @@ Edite `src/data/cards.json`. Cada entrada tem:
 }
 ```
 
-O tipo `CardData` é inferido do JSON, então um campo novo já fica disponível no TypeScript. Para mostrá-lo, é só editar `src/components/CardWiki/CardWiki.tsx`.
+O tipo `CardData` é inferido do JSON, então um campo novo já fica disponível no TypeScript. Para mostrá-lo, é só editar `src/components/CardContent/CardContent.tsx`.
 
 ### Ajustes finos
 
@@ -110,11 +111,11 @@ As constantes ficam no topo de cada arquivo:
 
 | O quê | Onde |
 | --- | --- |
-| Velocidade da animação, sensibilidade do arraste, inclinação máxima e acabamento da carta (`FINISH`: aspereza e verniz) | `src/components/Deck/Card.tsx` |
-| Colunas, fileiras, espaçamento e posição de foco | `src/components/Deck/layout.ts` |
-| Proporção, tamanho e raio dos cantos | `src/components/Deck/geometry.ts` |
-| Intensidade do desfoque | `src/components/BackgroundBlur/BackgroundBlur.tsx` |
-| Cores, luzes, softboxes que a carta reflete (`Lightformer`), partículas e câmera | `src/components/Table/Table.tsx` |
+| Velocidade da animação, sensibilidade do arraste, inclinação máxima, acabamento da carta (`FINISH`) e cor da borda (`EDGE_COLOR`) | `src/components/Card/Card.tsx` |
+| Proporção, tamanho e raio dos cantos | `src/components/Card/geometry.ts` |
+| Colunas, tamanho mínimo e animação de "salto" da grade | `src/components/Gallery/Gallery.css` |
+| Altura da vitrine, ponto de quebra do layout lado a lado e o botão de expandir | `src/components/CardDetail/CardDetail.css` |
+| Cores, luzes e reflexos que a carta reflete | `src/components/SceneLighting/SceneLighting.tsx` |
 
 ## Testes
 
