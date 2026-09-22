@@ -6,8 +6,9 @@ import {
 	SRGBColorSpace,
 } from 'three'
 
-export const CARD_WIDTH = 0.63
+const ARTWORK_ASPECT = 791 / 1169
 export const CARD_HEIGHT = 0.88
+export const CARD_WIDTH = CARD_HEIGHT * ARTWORK_ASPECT
 export const CARD_THICKNESS = 0.003
 const CORNER_RADIUS = 0.035
 const CURVE_SEGMENTS = 8

@@ -27,11 +27,19 @@ describe('CARDS', () => {
 		expect(new Set(CARDS.map((card) => card.name)).size).toBe(36)
 	})
 
-	it('points each card to a zero padded front image that exists', () => {
+	it('points every card to an image that exists', () => {
 		for (const card of CARDS) {
-			expect(card.front).toBe(`/cards/${String(card.id).padStart(2, '0')}.svg`)
 			expect(publicImages).toContain(card.front)
 		}
+	})
+
+	it('uses the custom artwork when a card has one', () => {
+		expect(CARDS[0].front).toBe('/cards/cavaleiro1.webp')
+		expect(CARDS[1].front).toBe('/cards/cavaleiro2.webp')
+	})
+
+	it('falls back to the zero padded placeholder', () => {
+		expect(CARDS[2].front).toBe('/cards/03.svg')
 	})
 
 	it('fills every wiki field', () => {

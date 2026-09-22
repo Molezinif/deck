@@ -5,5 +5,5 @@ export type CardData = (typeof entries)[number] & { id: number; front: string }
 export const CARDS: CardData[] = entries.map((entry, i) => ({
 	...entry,
 	id: i + 1,
-	front: `/cards/${String(i + 1).padStart(2, '0')}.svg`,
+	front: `/cards/${entry.image ?? `${String(i + 1).padStart(2, '0')}.svg`}`,
 }))

@@ -49,7 +49,7 @@ A cada commit, o Lefthook roda o Biome nos arquivos em stage, a checagem de tipo
 ## Estrutura
 
 ```
-public/cards/            imagens das cartas: 01.svg … 36.svg e back.svg
+public/cards/            artes das cartas e o verso (back.svg)
 src/
   App.tsx                estado da carta selecionada
   data/
@@ -74,14 +74,15 @@ Cada componente fica na sua própria pasta, com o seu teste no mesmo caminho den
 
 ### Imagens
 
-Substitua os arquivos em `public/cards/`:
+Coloque as artes em `public/cards/` e aponte cada carta para o seu arquivo com o campo `image` em `src/data/cards.json`:
 
-- `01` a `36`: a frente de cada carta, na ordem tradicional (01 Cavaleiro … 36 Cruz).
-- `back`: o verso, igual para todas.
+```json
+{ "image": "cavaleiro1.webp", "name": "Cavaleiro", … }
+```
 
-Use a proporção 63:88. Imagens em 630×880 px são suficientes, porque na tela a carta nunca aparece maior que isso, e em WebP o arquivo fica pequeno. Para usar outro formato, troque a extensão em `src/data/cards.ts` (frentes) e em `src/components/Table/Table.tsx` (verso).
+Uma carta sem `image` usa a imagem provisória `NN.svg` (01 Cavaleiro … 36 Cruz). O verso é o `back.svg`, e para trocar o arquivo edite `src/components/Table/Table.tsx`.
 
-Se o seu baralho tiver outra proporção, ajuste `CARD_WIDTH` e `CARD_HEIGHT` em `src/components/Deck/geometry.ts`.
+A carta 3D segue a proporção das artes, 791×1169. Se as suas artes tiverem outra proporção, ajuste `ARTWORK_ASPECT` em `src/components/Deck/geometry.ts`. Na tela a carta nunca aparece maior que uns 600 px de altura, então dá para reduzir as imagens para esse tamanho e salvar em WebP. Isso diminui bastante o download.
 
 ### Conteúdo
 
@@ -89,6 +90,7 @@ Edite `src/data/cards.json`. Cada entrada tem:
 
 ```json
 {
+  "image": "cavaleiro1.webp",
   "name": "Cavaleiro",
   "playingCard": "9 de copas",
   "keywords": ["notícias", "velocidade", "mensagem"],
@@ -110,7 +112,7 @@ As constantes ficam no topo de cada arquivo:
 | --- | --- |
 | Velocidade da animação, sensibilidade do arraste, inclinação máxima, brilho | `src/components/Deck/Card.tsx` |
 | Colunas, fileiras, espaçamento e posição de foco | `src/components/Deck/layout.ts` |
-| Tamanho e raio dos cantos | `src/components/Deck/geometry.ts` |
+| Proporção, tamanho e raio dos cantos | `src/components/Deck/geometry.ts` |
 | Intensidade do desfoque | `src/components/BackgroundBlur/BackgroundBlur.tsx` |
 | Cores, luzes, partículas e câmera | `src/components/Table/Table.tsx` |
 

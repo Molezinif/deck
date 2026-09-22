@@ -1,5 +1,6 @@
 [
 	{
+		"image": "cavaleiro1.webp",
 		"name": "Cavaleiro",
 		"playingCard": "9 de copas",
 		"keywords": ["notícias", "velocidade", "mensagem"],
@@ -10,6 +11,7 @@
 		"synthesis": ["novidade", "velocidade", "aproximação"]
 	},
 	{
+		"image": "cavaleiro2.webp",
 		"name": "Trevo",
 		"playingCard": "6 de ouros",
 		"keywords": ["sorte", "oportunidade", "pequenas alegrias"],
