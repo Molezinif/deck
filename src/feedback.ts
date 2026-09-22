@@ -3,7 +3,7 @@ import { useSyncExternalStore } from 'react'
 const SOUNDS = {
 	flip: ['card-slide-1', 'card-slide-2', 'card-slide-3', 'card-slide-4'],
 	settle: ['card-place-1', 'card-place-2', 'card-place-4'],
-	theme: ['card-fan-1'],
+	fan: ['card-fan-1'],
 }
 const VOLUME = 0.3
 const VIBRATION_MS = { tap: 10, tick: 4 }

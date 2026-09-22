@@ -18,5 +18,16 @@
 	"switch_to_light": "Switch to light theme",
 	"switch_to_dark": "Switch to dark theme",
 	"sound_on": "Turn sound on",
-	"sound_off": "Turn sound off"
+	"sound_off": "Turn sound off",
+	"view_label": "Arrange by",
+	"view_deck": "Deck",
+	"view_suits": "Suits",
+	"suit_hearts": "Hearts",
+	"suit_diamonds": "Diamonds",
+	"suit_spades": "Spades",
+	"suit_clubs": "Clubs",
+	"suit_hearts_about": "",
+	"suit_diamonds_about": "",
+	"suit_spades_about": "",
+	"suit_clubs_about": ""
 }

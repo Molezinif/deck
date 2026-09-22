@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CARDS, CARDS_EN } from '../../src/data/cards.ts'
+import { CARDS, CARDS_EN, SUITS } from '../../src/data/cards.ts'
 
 const publicImages = Object.keys(
 	import.meta.glob(['../../public/cards/*', '../../public/cards/thumbs/*']),
@@ -87,5 +87,21 @@ describe('card slugs', () => {
 		expect(CARDS[34].slug).toBe('ancora')
 		expect(new Set(CARDS.map((card) => card.slug)).size).toBe(36)
 		for (const card of CARDS) expect(card.slug).toMatch(/^[a-z-]+$/)
+	})
+})
+
+describe('card suits', () => {
+	it('reads the suit and rank of the playing card', () => {
+		expect(CARDS[0]).toMatchObject({ suit: 'hearts', rank: 3 })
+		expect(CARDS[24]).toMatchObject({ suit: 'clubs', rank: 8 })
+	})
+
+	it('has nine cards in every suit, one of each rank', () => {
+		for (const suit of SUITS) {
+			const ranks = CARDS.filter((card) => card.suit === suit)
+				.map((card) => card.rank)
+				.sort((a, b) => a - b)
+			expect(ranks).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8])
+		}
 	})
 })

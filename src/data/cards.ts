@@ -5,8 +5,26 @@ import entries from './cards.json'
 export type CardData = (typeof entries)[number] & {
 	id: number
 	slug: string
+	suit: Suit
+	rank: number
 	front: string
 	thumbnail: string
+}
+
+export const SUITS = ['hearts', 'diamonds', 'spades', 'clubs'] as const
+export type Suit = (typeof SUITS)[number]
+
+const SUIT_NAMES: Record<string, Suit> = {
+	copas: 'hearts',
+	ouros: 'diamonds',
+	espadas: 'spades',
+	paus: 'clubs',
+}
+const RANKS = ['6', '7', '8', '9', '10', 'valete', 'dama', 'rei', 'ás']
+
+function parsePlayingCard(playingCard: string) {
+	const [rank, suit] = playingCard.split(' de ')
+	return { suit: SUIT_NAMES[suit], rank: RANKS.indexOf(rank) }
 }
 
 const slugify = (name: string) =>
@@ -29,6 +47,7 @@ export const CARDS: CardData[] = entries.map((entry, i) => {
 		...entry,
 		id: i + 1,
 		slug: slugify(entry.name),
+		...parsePlayingCard(entry.playingCard),
 		front: entry.image ? `${cardsPath}/${entry.image}` : placeholder,
 		thumbnail: entry.image ? `${cardsPath}/thumbs/${entry.image}` : placeholder,
 	}

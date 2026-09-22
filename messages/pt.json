@@ -18,5 +18,16 @@
 	"switch_to_light": "Mudar para o tema claro",
 	"switch_to_dark": "Mudar para o tema escuro",
 	"sound_on": "Ativar som",
-	"sound_off": "Desativar som"
+	"sound_off": "Desativar som",
+	"view_label": "Organizar por",
+	"view_deck": "Baralho",
+	"view_suits": "Naipes",
+	"suit_hearts": "Copas",
+	"suit_diamonds": "Ouros",
+	"suit_spades": "Espadas",
+	"suit_clubs": "Paus",
+	"suit_hearts_about": "",
+	"suit_diamonds_about": "",
+	"suit_spades_about": "",
+	"suit_clubs_about": ""
 }

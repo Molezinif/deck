@@ -6,13 +6,87 @@
 
 /* The padding sits inside the scroller, not on it, and is wider than the
    hover lift so the lifted cards on the edges are never clipped. */
-.gallery-grid {
+.gallery-content {
 	box-sizing: border-box;
 	max-width: 1400px;
 	margin: 0 auto;
-	padding: max(76px, calc(env(safe-area-inset-top) + 62px))
+	padding: max(14px, env(safe-area-inset-top))
 		max(20px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom))
 		max(20px, env(safe-area-inset-left));
+}
+
+.gallery-view {
+	display: inline-flex;
+	gap: 2px;
+	margin: 0 0 28px;
+	padding: 3px;
+	border: 1px solid var(--hairline);
+	border-radius: 999px;
+	background: var(--glass);
+	animation: fade 500ms 200ms ease both;
+}
+
+.gallery-view legend {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.gallery-view button {
+	padding: 7px 14px;
+	border: 0;
+	border-radius: 999px;
+	background: none;
+	color: color-mix(in srgb, var(--ink) 70%, transparent);
+	font: inherit;
+	font-size: 0.8rem;
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	transition:
+		color 200ms,
+		background 200ms;
+}
+
+.gallery-view button:hover {
+	color: var(--gold);
+}
+
+.gallery-view button[aria-pressed="true"] {
+	background: color-mix(in srgb, var(--gold) 16%, transparent);
+	color: var(--gold);
+}
+
+.gallery-suit + .gallery-suit {
+	margin-top: 44px;
+}
+
+.gallery-suit h2 {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin: 0 0 6px;
+	font-family: var(--font-display);
+	font-size: 1.9rem;
+	font-weight: 600;
+	color: var(--ink);
+}
+
+.gallery-suit h2 span {
+	color: var(--gold);
+	font-size: 1.4rem;
+}
+
+.gallery-suit p {
+	max-width: 60ch;
+	margin: 0 0 4px;
+	line-height: 1.6;
+	color: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+
+.gallery-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(130px, 27vw), 1fr));
 	gap: 28px clamp(12px, 2vw, 18px);
@@ -37,6 +111,15 @@
 
 .gallery-item:focus-visible {
 	outline: none;
+}
+
+.gallery--settled .gallery-item {
+	animation: none;
+}
+
+::view-transition-group(.grid-card) {
+	animation-duration: 550ms;
+	animation-timing-function: var(--ease-out);
 }
 
 .gallery-card {
@@ -181,4 +264,17 @@
 .gallery-icon:focus-visible {
 	outline: 2px solid var(--gold);
 	outline-offset: 2px;
+}
+
+.gallery-suit .gallery-grid {
+	margin-top: 18px;
+}
+
+.grid-switching .gallery-item {
+	view-transition-name: var(--vt-name);
+	view-transition-class: grid-card;
+}
+
+.grid-switching .gallery-card--active {
+	view-transition-name: none;
 }

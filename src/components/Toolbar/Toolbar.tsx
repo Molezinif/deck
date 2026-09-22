@@ -77,7 +77,7 @@ export function Toolbar() {
 				type="button"
 				className="toolbar-icon"
 				onClick={() => {
-					feedback('theme', 0.7)
+					feedback('fan', 0.7)
 					toggleTheme()
 				}}
 				aria-label={theme === 'dark' ? m.switch_to_light() : m.switch_to_dark()}

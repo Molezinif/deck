@@ -30,4 +30,23 @@ describe('Gallery', () => {
 		expect(link('GitHub')).toBe('https://github.com/Molezinif/deck')
 		expect(link('Buy Me a Coffee')).toBe('https://buymeacoffee.com/molezinif')
 	})
+
+	it('groups the cards by suit, in rank order', () => {
+		render(<Gallery cards={CARDS} activeId={null} onSelect={() => {}} />)
+		fireEvent.click(screen.getByRole('button', { name: 'Naipes' }))
+		expect(
+			screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent),
+		).toEqual(['♥Copas', '♦Ouros', '♠Espadas', '♣Paus'])
+		const hearts = screen.getAllByRole('region')[0]
+		const names = [...hearts.querySelectorAll('img')].map((img) => img.alt)
+		expect(names).toHaveLength(9)
+		expect(names[0]).toBe(
+			CARDS.find((c) => c.playingCard === '6 de copas')?.name,
+		)
+		expect(names[8]).toBe(
+			CARDS.find((c) => c.playingCard === 'ás de copas')?.name,
+		)
+		fireEvent.click(screen.getByRole('button', { name: 'Baralho' }))
+		expect(screen.queryAllByRole('heading', { level: 2 })).toHaveLength(0)
+	})
 })

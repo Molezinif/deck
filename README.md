@@ -7,6 +7,7 @@ The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) i
 ## Features
 
 - A responsive grid of the 36 cards. Cards cascade in on load and, on desktop, tilt in 3D toward the pointer with a glare that follows it.
+- A switch at the top arranges the grid in deck order or grouped by suit (hearts, diamonds, spades, clubs), each suit in rank order from 6 to ace. The cards glide to their new places.
 - Opening a card morphs its thumbnail into the page (View Transitions), and the 3D card arrives face down and turns over, the way a card is revealed in a reading. Closing sends it back to its spot in the grid.
 - Card page: the card floats over the blurred grid, among golden dust, with a soft shadow. It leans slightly toward the pointer and spins when dragged. On release it settles on the nearest face, front or back, and a quick flick keeps its momentum.
 - The ‹ › buttons and the ← → keys move to the previous or next card.
@@ -133,6 +134,8 @@ Edit `src/data/cards.json` for Portuguese and `src/data/cards.en.json` for Engli
 English entries have the same fields except `image`, which comes from the Portuguese file. The `CardData` type is inferred from the JSON, so a new field is available in TypeScript right away. To show it, edit `src/components/CardContent/CardContent.tsx`.
 
 ### Languages
+
+Each suit has a short description slot in the messages (`suit_hearts_about` and so on). It starts empty and shows up under the suit title in the suit view once filled in.
 
 Interface texts live in `messages/en.json` and `messages/pt.json` and are used in code as typed functions, like `m.close()`. After editing them, `pnpm dev` picks the change up on its own.
 

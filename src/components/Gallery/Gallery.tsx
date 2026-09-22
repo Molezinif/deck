@@ -3,9 +3,12 @@ import {
 	type PointerEvent,
 	useLayoutEffect,
 	useRef,
+	useState,
 } from 'react'
-import type { CardData } from '../../data/cards.ts'
+import { type CardData, SUITS, type Suit } from '../../data/cards.ts'
+import { feedback } from '../../feedback.ts'
 import { m } from '../../paraglide/messages.js'
+import { withViewTransition } from '../../viewTransition.ts'
 import './Gallery.css'
 
 const MAX_TILT_DEG = 10
@@ -28,6 +31,30 @@ const CREDITS = [
 		url: 'https://www.instagram.com/molezinif/',
 	},
 ]
+
+type View = 'deck' | 'suits'
+const VIEWS: { id: View; label: () => string }[] = [
+	{ id: 'deck', label: m.view_deck },
+	{ id: 'suits', label: m.view_suits },
+]
+const SUIT_SYMBOLS: Record<Suit, string> = {
+	hearts: '♥',
+	diamonds: '♦',
+	spades: '♠',
+	clubs: '♣',
+}
+const SUIT_TITLES: Record<Suit, () => string> = {
+	hearts: m.suit_hearts,
+	diamonds: m.suit_diamonds,
+	spades: m.suit_spades,
+	clubs: m.suit_clubs,
+}
+const SUIT_ABOUT: Record<Suit, () => string> = {
+	hearts: m.suit_hearts_about,
+	diamonds: m.suit_diamonds_about,
+	spades: m.suit_spades_about,
+	clubs: m.suit_clubs_about,
+}
 
 type GalleryProps = {
 	cards: CardData[]
@@ -60,46 +87,97 @@ function untilt(event: PointerEvent<HTMLElement>) {
 
 export function Gallery({ cards, activeId, inert, onSelect }: GalleryProps) {
 	const active = useRef<HTMLButtonElement>(null)
+	const [view, setView] = useState<View>('deck')
+	const [settled, setSettled] = useState(false)
+
+	const switchView = (next: View) => {
+		if (next === view) return
+		feedback('fan', 0.5)
+		withViewTransition(() => {
+			setSettled(true)
+			setView(next)
+		}, 'grid-switching')
+	}
+
+	const renderCard = (card: CardData, i: number) => (
+		<button
+			key={card.id}
+			ref={card.id === activeId ? active : undefined}
+			type="button"
+			className="gallery-item"
+			style={{ '--order': i, '--vt-name': `card-${card.id}` } as CSSProperties}
+			onClick={() => onSelect(card.id)}
+			onPointerEnter={() => preload(card.front)}
+			onPointerMove={tilt}
+			onPointerLeave={untilt}
+		>
+			<span
+				className={
+					card.id === activeId
+						? 'gallery-card gallery-card--active'
+						: 'gallery-card'
+				}
+			>
+				<img
+					src={card.thumbnail}
+					alt={card.name}
+					loading="lazy"
+					decoding="async"
+				/>
+			</span>
+			<span className="gallery-label">
+				<span className="gallery-number">{card.id}</span>
+				{card.name}
+			</span>
+		</button>
+	)
 
 	useLayoutEffect(() => {
 		if (activeId !== null) active.current?.scrollIntoView({ block: 'nearest' })
 	}, [activeId])
 
 	return (
-		<div className="gallery" inert={inert}>
-			<div className="gallery-grid">
-				{cards.map((card, i) => (
-					<button
-						key={card.id}
-						ref={card.id === activeId ? active : undefined}
-						type="button"
-						className="gallery-item"
-						style={{ '--order': i } as CSSProperties}
-						onClick={() => onSelect(card.id)}
-						onPointerEnter={() => preload(card.front)}
-						onPointerMove={tilt}
-						onPointerLeave={untilt}
-					>
-						<span
-							className={
-								card.id === activeId
-									? 'gallery-card gallery-card--active'
-									: 'gallery-card'
-							}
+		<div
+			className={settled ? 'gallery gallery--settled' : 'gallery'}
+			inert={inert}
+		>
+			<div className="gallery-content">
+				<fieldset className="gallery-view">
+					<legend>{m.view_label()}</legend>
+					{VIEWS.map(({ id, label }) => (
+						<button
+							key={id}
+							type="button"
+							aria-pressed={view === id}
+							onClick={() => switchView(id)}
 						>
-							<img
-								src={card.thumbnail}
-								alt={card.name}
-								loading="lazy"
-								decoding="async"
-							/>
-						</span>
-						<span className="gallery-label">
-							<span className="gallery-number">{card.id}</span>
-							{card.name}
-						</span>
-					</button>
-				))}
+							{label()}
+						</button>
+					))}
+				</fieldset>
+				{view === 'deck' ? (
+					<div className="gallery-grid">{cards.map(renderCard)}</div>
+				) : (
+					SUITS.map((suit) => (
+						<section
+							key={suit}
+							className="gallery-suit"
+							aria-labelledby={`suit-${suit}`}
+						>
+							<h2 id={`suit-${suit}`}>
+								<span aria-hidden="true">{SUIT_SYMBOLS[suit]}</span>
+								{SUIT_TITLES[suit]()}
+							</h2>
+							{SUIT_ABOUT[suit]() && <p>{SUIT_ABOUT[suit]()}</p>}
+							<div className="gallery-grid">
+								{cards
+									.filter((card) => card.suit === suit)
+									.sort((a, b) => a.rank - b.rank)
+									.map(renderCard)}
+							</div>
+						</section>
+					))
+				)}
 			</div>
 			<footer className="gallery-footer">
 				<p>
