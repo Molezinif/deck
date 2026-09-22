@@ -25,6 +25,8 @@ type CardProps = {
 	from?: Pose
 	focused: boolean
 	onSelect: () => void
+	onTurn?: () => void
+	onSettle?: () => void
 }
 
 export function Card({
@@ -34,6 +36,8 @@ export function Card({
 	from,
 	focused,
 	onSelect,
+	onTurn,
+	onSettle,
 }: CardProps) {
 	const ref = useRef<Group>(null)
 	const [initial] = useState(from ?? pose)
@@ -77,6 +81,7 @@ export function Card({
 		if (!focused) return
 		event.stopPropagation()
 		dragging.current = true
+		flick.current = { speed: 0, at: 0 }
 		lastPointer.current = { x: event.clientX, y: event.clientY }
 		;(event.target as Element).setPointerCapture(event.pointerId)
 	}
@@ -87,7 +92,9 @@ export function Card({
 		const deltaY = event.clientY - lastPointer.current.y
 		lastPointer.current = { x: event.clientX, y: event.clientY }
 		flick.current = { speed: deltaX * DRAG_SENSITIVITY, at: event.timeStamp }
+		const face = Math.round(spin.current.z / Math.PI)
 		spin.current.z += flick.current.speed
+		if (Math.round(spin.current.z / Math.PI) !== face) onTurn?.()
 		spin.current.x = MathUtils.clamp(
 			spin.current.x + deltaY * DRAG_SENSITIVITY,
 			-MAX_TILT,
@@ -106,6 +113,7 @@ export function Card({
 			event.timeStamp - at < FLICK_WINDOW_MS ? speed * FLICK_MOMENTUM : 0
 		const settled = spin.current.z + momentum
 		spin.current = { x: 0, z: Math.round(settled / Math.PI) * Math.PI }
+		if (flick.current.at > 0) onSettle?.()
 	}
 
 	return (

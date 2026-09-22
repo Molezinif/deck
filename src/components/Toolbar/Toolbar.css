@@ -63,7 +63,7 @@
 	color: var(--gold);
 }
 
-.toolbar-theme {
+.toolbar-icon {
 	display: grid;
 	place-items: center;
 	width: 32px;

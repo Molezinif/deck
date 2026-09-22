@@ -9,6 +9,7 @@ import {
 } from 'react'
 import { type Group, MathUtils, type PerspectiveCamera } from 'three'
 import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
+import { feedback, haptic } from '../../feedback.ts'
 import { useTheme } from '../../theme.ts'
 import { Card, type Pose } from '../Card/Card.tsx'
 import { CARD_HEIGHT } from '../Card/geometry.ts'
@@ -170,6 +171,8 @@ function CardMesh({ card, from }: { card: CardData; from?: Pose }) {
 			from={from}
 			focused
 			onSelect={() => {}}
+			onTurn={() => haptic('tick')}
+			onSettle={() => feedback('settle', 0.7)}
 		/>
 	)
 }

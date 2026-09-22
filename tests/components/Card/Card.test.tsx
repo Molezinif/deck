@@ -91,6 +91,63 @@ describe('Card entering', () => {
 	})
 })
 
+describe('Card feedback', () => {
+	const pointer = {
+		pointerId: 1,
+		target: { setPointerCapture: vi.fn(), releasePointerCapture: vi.fn() },
+	}
+
+	async function renderWithFeedback() {
+		const onTurn = vi.fn()
+		const onSettle = vi.fn()
+		const renderer = await ReactThreeTestRenderer.create(
+			<Card {...cardProps(true)} onTurn={onTurn} onSettle={onSettle} />,
+		)
+		return { renderer, card: renderer.scene.children[0], onTurn, onSettle }
+	}
+
+	it('ticks each time a face goes past while spinning', async () => {
+		const { renderer, card, onTurn } = await renderWithFeedback()
+		await renderer.fireEvent(card, 'pointerDown', {
+			...pointer,
+			clientX: 0,
+			clientY: 0,
+		})
+		for (const x of [100, 200, 300, 400, 500]) {
+			await renderer.fireEvent(card, 'pointerMove', {
+				clientX: x,
+				clientY: 0,
+				timeStamp: x,
+			})
+		}
+		expect(onTurn).toHaveBeenCalledTimes(2)
+	})
+
+	it('lands with a sound only after being dragged', async () => {
+		const { renderer, card, onSettle } = await renderWithFeedback()
+		await renderer.fireEvent(card, 'pointerDown', {
+			...pointer,
+			clientX: 0,
+			clientY: 0,
+		})
+		await renderer.fireEvent(card, 'pointerUp', pointer)
+		expect(onSettle).not.toHaveBeenCalled()
+
+		await renderer.fireEvent(card, 'pointerDown', {
+			...pointer,
+			clientX: 0,
+			clientY: 0,
+		})
+		await renderer.fireEvent(card, 'pointerMove', {
+			clientX: 80,
+			clientY: 0,
+			timeStamp: 1,
+		})
+		await renderer.fireEvent(card, 'pointerUp', pointer)
+		expect(onSettle).toHaveBeenCalledOnce()
+	})
+})
+
 describe('Card surface', () => {
 	it('gives both faces a glossy finish that reflects light', async () => {
 		const { card } = await renderCard(false)

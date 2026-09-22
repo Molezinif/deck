@@ -16,5 +16,7 @@
 	"credit_code": "Código de",
 	"language": "Idioma",
 	"switch_to_light": "Mudar para o tema claro",
-	"switch_to_dark": "Mudar para o tema escuro"
+	"switch_to_dark": "Mudar para o tema escuro",
+	"sound_on": "Ativar som",
+	"sound_off": "Desativar som"
 }

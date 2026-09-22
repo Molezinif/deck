@@ -4,6 +4,7 @@ import { CardDetail } from './components/CardDetail/CardDetail.tsx'
 import { Gallery } from './components/Gallery/Gallery.tsx'
 import { Toolbar } from './components/Toolbar/Toolbar.tsx'
 import { CARDS, DECKS } from './data/cards.ts'
+import { feedback } from './feedback.ts'
 import { getLocale } from './paraglide/runtime.js'
 import { withViewTransition } from './viewTransition.ts'
 
@@ -23,6 +24,7 @@ export function App() {
 	useEffect(() => {
 		const syncWithUrl = () => {
 			const id = idFromHash()
+			feedback(id === null ? 'settle' : 'flip', id === null ? 0.6 : 1)
 			if (id !== null) flushSync(() => setReturnId(id))
 			withViewTransition(() => setSelectedId(id))
 		}
@@ -31,6 +33,7 @@ export function App() {
 	}, [])
 
 	const open = (id: number) => {
+		feedback('flip')
 		flushSync(() => setReturnId(id))
 		withViewTransition(() => {
 			history.pushState({ opened: true }, '', hashOf(id))
@@ -39,6 +42,7 @@ export function App() {
 	}
 
 	const navigate = (id: number) => {
+		feedback('flip', 0.8)
 		history.replaceState(history.state, '', hashOf(id))
 		setReturnId(id)
 		setSelectedId(id)
@@ -51,6 +55,7 @@ export function App() {
 			history.back()
 			return
 		}
+		feedback('settle', 0.6)
 		history.replaceState(null, '', withoutHash())
 		withViewTransition(() => setSelectedId(null))
 	}

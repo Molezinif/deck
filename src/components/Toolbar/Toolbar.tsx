@@ -1,3 +1,10 @@
+import {
+	feedback,
+	haptic,
+	play,
+	toggleSound,
+	useSoundOn,
+} from '../../feedback.ts'
 import { m } from '../../paraglide/messages.js'
 import {
 	getLocale,
@@ -15,6 +22,13 @@ const LANGUAGE_NAMES: Record<Locale, string> = {
 
 export function Toolbar() {
 	const theme = useTheme()
+	const soundOn = useSoundOn()
+
+	const switchSound = () => {
+		haptic()
+		toggleSound()
+		play('settle', 0.5)
+	}
 
 	return (
 		<div className="toolbar">
@@ -35,8 +49,37 @@ export function Toolbar() {
 			</fieldset>
 			<button
 				type="button"
-				className="toolbar-theme"
-				onClick={toggleTheme}
+				className="toolbar-icon"
+				onClick={switchSound}
+				aria-label={soundOn ? m.sound_off() : m.sound_on()}
+				aria-pressed={soundOn}
+			>
+				<svg
+					viewBox="0 0 24 24"
+					width="18"
+					height="18"
+					aria-hidden="true"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				>
+					<path d="M4 9.5h3l4.5-4v13L7 14.5H4z" />
+					{soundOn ? (
+						<path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" />
+					) : (
+						<path d="M16 9.5l5 5M21 9.5l-5 5" />
+					)}
+				</svg>
+			</button>
+			<button
+				type="button"
+				className="toolbar-icon"
+				onClick={() => {
+					feedback('theme', 0.7)
+					toggleTheme()
+				}}
 				aria-label={theme === 'dark' ? m.switch_to_light() : m.switch_to_dark()}
 			>
 				<svg

@@ -32,4 +32,14 @@ describe('Toolbar', () => {
 		)
 		expect(document.documentElement.dataset.theme).toBe('dark')
 	})
+
+	it('mutes and unmutes the sound, remembering the choice', () => {
+		render(<Toolbar />)
+		const mute = screen.getByRole('button', { name: 'Desativar som' })
+		expect(mute.getAttribute('aria-pressed')).toBe('true')
+		fireEvent.click(mute)
+		expect(localStorage.getItem('deck-sound')).toBe('off')
+		fireEvent.click(screen.getByRole('button', { name: 'Ativar som' }))
+		expect(localStorage.getItem('deck-sound')).toBe('on')
+	})
 })
