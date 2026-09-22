@@ -3,6 +3,16 @@ body,
 #root {
 	margin: 0;
 	height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+}
+
+@supports (height: 100dvh) {
+	html,
+	body,
+	#root {
+		height: 100dvh;
+	}
 }
 
 body {

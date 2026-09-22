@@ -5,7 +5,7 @@ import {
 	CARD_WIDTH,
 	edgeGeometry,
 	faceGeometry,
-} from '../../../src/components/Deck/geometry.ts'
+} from '../../../src/components/Card/geometry.ts'
 
 describe('faceGeometry', () => {
 	it('spans the card size centered on the origin', () => {

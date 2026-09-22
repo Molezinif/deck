@@ -13,7 +13,7 @@
 	},
 	"overrides": [
 		{
-			"includes": ["src/components/Deck/**"],
+			"includes": ["src/components/Card/**"],
 			"linter": {
 				"rules": {
 					"a11y": {

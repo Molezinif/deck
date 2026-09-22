@@ -3,73 +3,63 @@ import { describe, expect, it, vi } from 'vitest'
 import { App } from '../src/App.tsx'
 import { CARDS } from '../src/data/cards.ts'
 
-type TableProps = {
-	selectedId: number | null
-	onSelect: (id: number) => void
-	onDismiss: () => void
-}
-
-vi.mock('../src/components/Table/Table.tsx', () => ({
-	Table: ({ selectedId, onSelect, onDismiss }: TableProps) => (
-		<div>
-			<output>{String(selectedId)}</output>
+vi.mock('../src/components/Gallery/Gallery.tsx', () => ({
+	Gallery: ({ onSelect }: { onSelect: (id: number) => void }) => (
+		<>
 			<button type="button" onClick={() => onSelect(1)}>
 				carta 1
 			</button>
 			<button type="button" onClick={() => onSelect(23)}>
 				carta 23
 			</button>
-			<button type="button" onClick={onDismiss}>
-				fora
+		</>
+	),
+}))
+
+vi.mock('../src/components/CardDetail/CardDetail.tsx', () => ({
+	CardDetail: ({
+		card,
+		onClose,
+	}: {
+		card: { name: string }
+		onClose: () => void
+	}) => (
+		<div>
+			<output>{card.name}</output>
+			<button type="button" onClick={onClose}>
+				fechar detalhe
 			</button>
 		</div>
 	),
 }))
 
-const wiki = () => screen.queryByRole('complementary')
-const selected = () => screen.getByRole('status').textContent
 const click = (name: string) =>
 	fireEvent.click(screen.getByRole('button', { name }))
+const detail = () => screen.queryByRole('status')
 
 describe('App', () => {
 	it('starts with no card selected', () => {
 		render(<App />)
-		expect(selected()).toBe('null')
-		expect(wiki()).toBeNull()
+		expect(detail()).toBeNull()
 	})
 
-	it('opens the wiki of the selected card', () => {
+	it('opens the detail of the tapped card', () => {
 		render(<App />)
 		click('carta 23')
-		expect(selected()).toBe('23')
-		expect(wiki()?.textContent).toContain(CARDS[22].name)
+		expect(detail()?.textContent).toBe(CARDS[22].name)
 	})
 
 	it('switches to another card', () => {
 		render(<App />)
 		click('carta 23')
 		click('carta 1')
-		expect(wiki()?.textContent).toContain(CARDS[0].name)
+		expect(detail()?.textContent).toBe(CARDS[0].name)
 	})
 
-	it('closes when the same card is selected again', () => {
+	it('closes the detail', () => {
 		render(<App />)
 		click('carta 23')
-		click('carta 23')
-		expect(wiki()).toBeNull()
-	})
-
-	it('closes on the close button', () => {
-		render(<App />)
-		click('carta 23')
-		click('Fechar')
-		expect(selected()).toBe('null')
-	})
-
-	it('closes when the table is dismissed', () => {
-		render(<App />)
-		click('carta 23')
-		click('fora')
-		expect(wiki()).toBeNull()
+		click('fechar detalhe')
+		expect(detail()).toBeNull()
 	})
 })

@@ -1,18 +1,19 @@
 import ReactThreeTestRenderer from '@react-three/test-renderer'
 import { Mesh, MeshPhysicalMaterial, Texture } from 'three'
 import { describe, expect, it, vi } from 'vitest'
-import { Card } from '../../../src/components/Deck/Card.tsx'
-import { FOCUS_POSE, tablePose } from '../../../src/components/Deck/layout.ts'
+import { Card, type Pose } from '../../../src/components/Card/Card.tsx'
 
 vi.mock('@react-three/drei', () => ({ useCursor: () => {} }))
 
 const FRAME = 1 / 60
+const RESTING: Pose = { position: [0, 0, 0], rotation: [Math.PI, 0, 0] }
+const FOCUSED: Pose = { position: [0, 1, 1], rotation: [Math.PI + 0.35, 0, 0] }
 
 function cardProps(focused: boolean) {
 	return {
 		front: new Texture(),
 		back: new Texture(),
-		pose: focused ? FOCUS_POSE : tablePose(0),
+		pose: focused ? FOCUSED : RESTING,
 		focused,
 		onSelect: () => {},
 	}
@@ -28,7 +29,7 @@ async function renderCard(focused: boolean) {
 		<Card
 			front={new Texture()}
 			back={new Texture()}
-			pose={focused ? FOCUS_POSE : tablePose(0)}
+			pose={focused ? FOCUSED : RESTING}
 			focused={focused}
 			onSelect={onSelect}
 		/>,
@@ -49,7 +50,7 @@ async function renderCard(focused: boolean) {
 	return { renderer, card, onSelect, drag, unfocus, pointer }
 }
 
-describe('Card on the table', () => {
+describe('Card at rest', () => {
 	it('asks to be selected when clicked', async () => {
 		const { renderer, card, onSelect } = await renderCard(false)
 		await renderer.fireEvent(card, 'click')
@@ -128,10 +129,7 @@ describe('Focused card', () => {
 		const { renderer, card, drag } = await renderCard(true)
 		await drag(0, 1000)
 		await renderer.advanceFrames(120, FRAME)
-		expect(card.instance.rotation.x).toBeCloseTo(
-			FOCUS_POSE.rotation[0] + 0.8,
-			1,
-		)
+		expect(card.instance.rotation.x).toBeCloseTo(FOCUSED.rotation[0] + 0.8, 1)
 	})
 
 	it('stops following the pointer once released', async () => {
@@ -166,6 +164,6 @@ describe('Focused card', () => {
 		await renderer.advanceFrames(120, FRAME)
 		await unfocus()
 		await renderer.advanceFrames(240, FRAME)
-		expect(card.instance.rotation.x).toBeCloseTo(tablePose(0).rotation[0], 2)
+		expect(card.instance.rotation.x).toBeCloseTo(RESTING.rotation[0], 2)
 	})
 })

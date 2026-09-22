@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { CardWiki } from './components/CardWiki/CardWiki.tsx'
-import { Table } from './components/Table/Table.tsx'
+import { CardDetail } from './components/CardDetail/CardDetail.tsx'
+import { Gallery } from './components/Gallery/Gallery.tsx'
 import { CARDS } from './data/cards.ts'
 
 export function App() {
@@ -9,16 +9,9 @@ export function App() {
 
 	return (
 		<>
-			<Table
-				cards={CARDS}
-				selectedId={selectedId}
-				onSelect={(id) =>
-					setSelectedId((current) => (current === id ? null : id))
-				}
-				onDismiss={() => setSelectedId(null)}
-			/>
+			<Gallery cards={CARDS} onSelect={setSelectedId} />
 			{selected && (
-				<CardWiki card={selected} onClose={() => setSelectedId(null)} />
+				<CardDetail card={selected} onClose={() => setSelectedId(null)} />
 			)}
 		</>
 	)

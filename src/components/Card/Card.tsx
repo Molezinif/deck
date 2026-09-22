@@ -3,14 +3,18 @@ import { type ThreeEvent, useFrame } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import { type Group, MathUtils, type Texture, Vector3 } from 'three'
 import { CARD_THICKNESS, edgeGeometry, faceGeometry } from './geometry.ts'
-import type { Pose } from './layout.ts'
 
-const EDGE_COLOR = '#e8e2d6'
+const EDGE_COLOR = '#1a0f26'
 const HOVER_LIFT = 0.04
 const SPEED = 8
 const DRAG_SENSITIVITY = 0.01
 const MAX_TILT = 0.8
 const FINISH = { roughness: 0.55, clearcoat: 0.5, clearcoatRoughness: 0.3 }
+
+export type Pose = {
+	position: [number, number, number]
+	rotation: [number, number, number]
+}
 
 type CardProps = {
 	front: Texture

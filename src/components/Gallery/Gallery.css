@@ -1,0 +1,61 @@
+.gallery {
+	box-sizing: border-box;
+	max-width: 1400px;
+	height: 100%;
+	margin: 0 auto;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: max(16px, env(safe-area-inset-top)) 16px
+		max(16px, env(safe-area-inset-bottom));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+	gap: 16px;
+}
+
+.gallery-item {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	text-align: center;
+	cursor: pointer;
+	transform: translateY(0) scale(1);
+	transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gallery-item img {
+	width: 100%;
+	/* matches ARTWORK_ASPECT in src/components/Card/geometry.ts */
+	aspect-ratio: 791 / 1169;
+	object-fit: cover;
+	border-radius: 10px;
+	border: 1px solid rgb(201 160 255 / 0.25);
+	background: #f4efe6;
+	transition:
+		border-color 220ms,
+		box-shadow 220ms;
+}
+
+.gallery-item span {
+	font-size: 0.75rem;
+	opacity: 0.8;
+}
+
+/* Hover on desktop, press-and-hold on touch: the card pops up and stays
+   lifted while the finger or pointer is on it. */
+.gallery-item:hover,
+.gallery-item:focus-visible,
+.gallery-item:active {
+	transform: translateY(-10px) scale(1.06);
+}
+
+.gallery-item:hover img,
+.gallery-item:focus-visible img,
+.gallery-item:active img {
+	border-color: rgb(242 211 138 / 0.7);
+	box-shadow: 0 16px 28px rgb(0 0 0 / 0.45);
+}
