@@ -4,108 +4,210 @@
 	z-index: 10;
 	overflow-y: auto;
 	overscroll-behavior: contain;
-	background: #14081f;
 }
 
-.card-detail-showcase {
+/* The blur lives on a fixed layer instead of the dialog itself: a
+   backdrop-filter on the scroller would become the containing block of the
+   fixed canvas and make it scroll away with the text. */
+.card-detail::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: rgb(12 5 20 / 0.6);
+	backdrop-filter: blur(24px) saturate(1.3);
+	-webkit-backdrop-filter: blur(24px) saturate(1.3);
+	animation: fade 400ms ease both;
+}
+
+.card-detail-canvas {
+	position: fixed;
+	inset: 0;
+}
+
+.card-detail-layout {
 	position: relative;
-	height: 55vh;
-	touch-action: none;
+	pointer-events: none;
 }
 
-@supports (height: 55dvh) {
-	.card-detail-showcase {
-		height: 55dvh;
-	}
+.card-detail-stage {
+	position: sticky;
+	top: 0;
+	height: 60dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	container-type: size;
+	transition: height 450ms var(--ease-out);
 }
 
-.card-detail--expanded .card-detail-showcase {
-	height: 88vh;
+.card-detail--expanded .card-detail-stage {
+	height: 90dvh;
 }
 
-@supports (height: 88dvh) {
-	.card-detail--expanded .card-detail-showcase {
-		height: 88dvh;
-	}
+.card-detail-slot {
+	width: min(76cqw, 74cqh * 791 / 1169);
+	aspect-ratio: 791 / 1169;
+	margin-top: calc(8px + env(safe-area-inset-top));
+	margin-bottom: 44px;
+	view-transition-name: card;
 }
 
-.card-detail-body {
-	box-sizing: border-box;
-	padding: 24px 24px calc(24px + env(safe-area-inset-bottom));
+.card-detail-controls {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	transform: translateX(-50%);
+	pointer-events: auto;
+	animation: fade 500ms 300ms ease both;
+}
+
+.card-detail-button,
+.card-detail-expand {
+	border: 1px solid var(--hairline);
+	background: var(--glass);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	color: var(--gold);
+	font: inherit;
+	cursor: pointer;
+	transition:
+		background 200ms,
+		border-color 200ms,
+		transform 200ms var(--ease-out);
+}
+
+.card-detail-button {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	padding: 0 0 3px;
+	border-radius: 999px;
+	font-size: 1.6rem;
+	line-height: 1;
+}
+
+.card-detail-expand {
+	padding: 9px 16px;
+	border-radius: 999px;
+	font-size: 0.8rem;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+}
+
+.card-detail-button:hover,
+.card-detail-expand:hover {
+	border-color: var(--gold);
+	background: rgb(242 211 138 / 0.12);
+}
+
+.card-detail-button:active,
+.card-detail-expand:active {
+	transform: scale(0.94);
 }
 
 .card-detail-close {
 	position: fixed;
-	top: calc(12px + env(safe-area-inset-top));
+	top: calc(14px + env(safe-area-inset-top));
 	right: 16px;
-	z-index: 1;
-	width: 36px;
-	height: 36px;
-	border-radius: 999px;
-	border: 0;
-	background: rgb(20 8 31 / 0.7);
-	color: #f4efe6;
-	font-size: 1.5rem;
-	line-height: 1;
-	cursor: pointer;
+	z-index: 2;
+	color: var(--ink);
+	animation: fade 400ms 200ms ease both;
 }
 
-.card-detail-expand {
+.card-detail-body {
+	position: relative;
+	box-sizing: border-box;
+	min-height: 45vh;
+	padding: 28px 24px calc(32px + env(safe-area-inset-bottom));
+	border-top: 1px solid rgb(242 211 138 / 0.15);
+	border-radius: 28px 28px 0 0;
+	background: rgb(20 8 31 / 0.62);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	pointer-events: auto;
+	animation: rise 600ms 120ms var(--ease-out) both;
+}
+
+.card-detail-body::before {
+	content: "";
 	position: absolute;
-	bottom: 12px;
+	top: 10px;
 	left: 50%;
-	transform: translateX(-50%);
-	padding: 6px 14px;
+	width: 36px;
+	height: 4px;
 	border-radius: 999px;
-	border: 1px solid rgb(242 211 138 / 0.5);
-	background: rgb(20 8 31 / 0.7);
-	color: #f2d38a;
-	font-size: 0.8rem;
-	cursor: pointer;
+	background: rgb(244 239 230 / 0.25);
+	transform: translateX(-50%);
 }
 
-@media (min-width: 800px) and (min-height: 600px) {
+@media (min-aspect-ratio: 1 / 1) and (min-width: 560px) {
 	.card-detail {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 32px;
+		overflow: hidden;
 	}
 
-	.card-detail-showcase {
-		width: min(60vw, 560px);
-		height: min(80vh, 720px);
-		flex: none;
+	.card-detail-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+		gap: 24px;
+		box-sizing: border-box;
+		max-width: 1240px;
+		height: 100%;
+		margin: 0 auto;
+		padding: 0 clamp(16px, 4vw, 56px);
+		transition: grid-template-columns 500ms var(--ease-out);
 	}
 
-	@supports (height: 80dvh) {
-		.card-detail-showcase {
-			height: min(80dvh, 720px);
-		}
+	.card-detail--expanded .card-detail-layout {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0px);
 	}
 
-	.card-detail--expanded .card-detail-showcase {
-		height: min(92vh, 900px);
+	.card-detail-stage,
+	.card-detail--expanded .card-detail-stage {
+		position: relative;
+		height: 100%;
 	}
 
-	@supports (height: 92dvh) {
-		.card-detail--expanded .card-detail-showcase {
-			height: min(92dvh, 900px);
-		}
+	.card-detail-slot {
+		width: min(80cqw, 78cqh * 791 / 1169);
+		margin-top: 0;
+		margin-bottom: 32px;
+	}
+
+	.card-detail--expanded .card-detail-slot {
+		width: min(90cqw, 84cqh * 791 / 1169);
+	}
+
+	.card-detail-controls {
+		bottom: max(24px, env(safe-area-inset-bottom));
 	}
 
 	.card-detail-body {
-		max-width: 420px;
-		max-height: min(80vh, 720px);
+		align-self: center;
+		min-width: 0;
+		min-height: 0;
+		max-height: 100%;
 		overflow-y: auto;
+		padding: 48px 8px 48px 0;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		transition:
+			opacity 300ms,
+			visibility 300ms;
 	}
 
-	.card-detail:not(.card-detail--expanded) {
-		flex-direction: row;
-		gap: 40px;
+	.card-detail-body::before {
+		display: none;
 	}
 
 	.card-detail--expanded .card-detail-body {
-		display: none;
+		opacity: 0;
+		visibility: hidden;
 	}
 }

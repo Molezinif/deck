@@ -21,6 +21,19 @@
 					}
 				}
 			}
+		},
+		{
+			"includes": ["src/index.css"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnknownTypeSelector": "off"
+					},
+					"complexity": {
+						"noImportantStyles": "off"
+					}
+				}
+			}
 		}
 	]
 }

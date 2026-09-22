@@ -1,3 +1,16 @@
+:root {
+	--ink: #f4efe6;
+	--gold: #f2d38a;
+	--violet: #c9a0ff;
+	--night: #14081f;
+	--glass: rgb(20 8 31 / 0.55);
+	--hairline: rgb(242 211 138 / 0.35);
+	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--font-display: "Cormorant Garamond", Georgia, serif;
+	--font-body: Georgia, serif;
+	color-scheme: dark;
+}
+
 html,
 body,
 #root {
@@ -16,7 +29,49 @@ body,
 }
 
 body {
-	font-family: Georgia, serif;
-	color: #f4efe6;
-	background: #14081f;
+	font-family: var(--font-body);
+	color: var(--ink);
+	background:
+		radial-gradient(120% 70% at 50% -10%, #2c1348 0%, transparent 60%),
+		radial-gradient(90% 60% at 50% 115%, #1f0c33 0%, transparent 70%),
+		var(--night);
+}
+
+button:focus-visible {
+	outline: 2px solid var(--gold);
+	outline-offset: 3px;
+}
+
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+}
+
+::view-transition-group(card) {
+	animation-duration: 520ms;
+	animation-timing-function: var(--ease-out);
+}
+
+::view-transition-old(card),
+::view-transition-new(card) {
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	::before,
+	::after {
+		animation-duration: 1ms !important;
+		animation-delay: 0ms !important;
+		transition-duration: 1ms !important;
+	}
 }

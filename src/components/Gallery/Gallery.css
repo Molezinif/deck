@@ -1,21 +1,27 @@
 .gallery {
-	box-sizing: border-box;
-	max-width: 1400px;
 	height: 100%;
-	margin: 0 auto;
 	overflow-y: auto;
 	overscroll-behavior: contain;
-	padding: max(16px, env(safe-area-inset-top)) 16px
-		max(16px, env(safe-area-inset-bottom));
+}
+
+/* The padding sits inside the scroller, not on it, and is wider than the
+   hover lift so the lifted cards on the edges are never clipped. */
+.gallery-grid {
+	box-sizing: border-box;
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: max(28px, env(safe-area-inset-top))
+		max(20px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom))
+		max(20px, env(safe-area-inset-left));
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-	gap: 16px;
+	grid-template-columns: repeat(auto-fill, minmax(min(130px, 27vw), 1fr));
+	gap: 28px clamp(12px, 2vw, 18px);
 }
 
 .gallery-item {
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 10px;
 	padding: 0;
 	border: 0;
 	background: none;
@@ -23,35 +29,98 @@
 	font: inherit;
 	text-align: center;
 	cursor: pointer;
-	transform: translateY(0) scale(1);
-	transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+	perspective: 700px;
+	-webkit-tap-highlight-color: transparent;
+	animation: rise 700ms var(--ease-out) both;
+	animation-delay: calc(min(var(--order), 27) * 25ms);
 }
 
-.gallery-item img {
+.gallery-item:focus-visible {
+	outline: none;
+}
+
+.gallery-card {
+	position: relative;
+	display: block;
+	border-radius: 10px;
+	box-shadow:
+		0 2px 6px rgb(0 0 0 / 0.35),
+		0 10px 24px rgb(0 0 0 / 0.25);
+	transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+	transition:
+		transform 500ms var(--ease-out),
+		box-shadow 300ms;
+}
+
+.gallery-card--active {
+	view-transition-name: card;
+}
+
+.gallery-card img {
+	display: block;
 	width: 100%;
 	/* matches ARTWORK_ASPECT in src/components/Card/geometry.ts */
 	aspect-ratio: 791 / 1169;
 	object-fit: cover;
-	border-radius: 10px;
+	border-radius: inherit;
 	background: #f4efe6;
-	transition: box-shadow 220ms;
 }
 
-.gallery-item span {
-	font-size: 0.75rem;
-	opacity: 0.8;
+.gallery-card::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: radial-gradient(
+		circle at var(--mx, 50%) var(--my, 0%),
+		rgb(255 244 214 / 0.45),
+		transparent 55%
+	);
+	mix-blend-mode: soft-light;
+	opacity: 0;
+	transition: opacity 300ms;
+	pointer-events: none;
 }
 
-/* Hover on desktop, press-and-hold on touch: the card pops up and stays
-   lifted while the finger or pointer is on it. */
-.gallery-item:hover,
-.gallery-item:focus-visible,
-.gallery-item:active {
-	transform: translateY(-10px) scale(1.06);
+.gallery-label {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 6px;
+	font-size: 0.78rem;
+	letter-spacing: 0.02em;
+	opacity: 0.75;
+	transition: opacity 200ms;
 }
 
-.gallery-item:hover img,
-.gallery-item:focus-visible img,
-.gallery-item:active img {
-	box-shadow: 0 16px 28px rgb(0 0 0 / 0.45);
+.gallery-number {
+	font-family: var(--font-display);
+	font-size: 0.95rem;
+	font-weight: 600;
+	font-variant-numeric: lining-nums;
+	color: var(--gold);
+}
+
+.gallery-item:hover .gallery-card,
+.gallery-item:focus-visible .gallery-card,
+.gallery-item:active .gallery-card {
+	transform: translateY(-6px) scale(1.04) rotateX(var(--rx, 0deg))
+		rotateY(var(--ry, 0deg));
+	box-shadow:
+		0 0 0 1px rgb(242 211 138 / 0.35),
+		0 18px 34px rgb(0 0 0 / 0.5),
+		0 0 40px rgb(157 92 255 / 0.25);
+	transition:
+		transform 160ms ease-out,
+		box-shadow 300ms;
+}
+
+.gallery-item:hover .gallery-card::after,
+.gallery-item:focus-visible .gallery-card::after {
+	opacity: 1;
+}
+
+.gallery-item:hover .gallery-label,
+.gallery-item:focus-visible .gallery-label {
+	opacity: 1;
 }

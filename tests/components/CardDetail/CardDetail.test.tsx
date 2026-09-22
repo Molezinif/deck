@@ -10,10 +10,22 @@ vi.mock('../../../src/components/CardShowcase/CardShowcase.tsx', () => ({
 }))
 
 const card = CARDS[22]
+const neighbors = { previous: CARDS[21], next: CARDS[23] }
+
+function renderDetail({ onClose = () => {}, onSelect = () => {} } = {}) {
+	return render(
+		<CardDetail
+			card={card}
+			{...neighbors}
+			onSelect={onSelect}
+			onClose={onClose}
+		/>,
+	)
+}
 
 describe('CardDetail', () => {
 	it('shows the 3D showcase and the wiki content, labelled by the card name', () => {
-		render(<CardDetail card={card} onClose={() => {}} />)
+		renderDetail()
 		expect(screen.getByRole('dialog', { name: card.name })).toBeTruthy()
 		expect(screen.getByTestId('showcase').textContent).toBe(card.name)
 		expect(screen.getByText(card.meaning)).toBeTruthy()
@@ -21,20 +33,20 @@ describe('CardDetail', () => {
 
 	it('closes on Escape', () => {
 		const onClose = vi.fn()
-		render(<CardDetail card={card} onClose={onClose} />)
+		renderDetail({ onClose })
 		fireEvent.keyDown(window, { key: 'Escape' })
 		expect(onClose).toHaveBeenCalledOnce()
 	})
 
 	it('closes on the close button', () => {
 		const onClose = vi.fn()
-		render(<CardDetail card={card} onClose={onClose} />)
+		renderDetail({ onClose })
 		fireEvent.click(screen.getByRole('button', { name: 'Fechar' }))
 		expect(onClose).toHaveBeenCalledOnce()
 	})
 
 	it('expands and collapses the showcase', () => {
-		render(<CardDetail card={card} onClose={() => {}} />)
+		renderDetail()
 		const toggle = screen.getByRole('button', { name: 'Expandir carta' })
 		expect(toggle.getAttribute('aria-pressed')).toBe('false')
 
@@ -52,10 +64,29 @@ describe('CardDetail', () => {
 
 	it('collapses on Escape instead of closing when expanded', () => {
 		const onClose = vi.fn()
-		render(<CardDetail card={card} onClose={onClose} />)
+		renderDetail({ onClose })
 		fireEvent.click(screen.getByRole('button', { name: 'Expandir carta' }))
 		fireEvent.keyDown(window, { key: 'Escape' })
 		expect(onClose).not.toHaveBeenCalled()
 		expect(screen.getByRole('button', { name: 'Expandir carta' })).toBeTruthy()
+	})
+
+	it('moves to the neighbor cards with the arrows and the keyboard', () => {
+		const onSelect = vi.fn()
+		renderDetail({ onSelect })
+		fireEvent.click(
+			screen.getByRole('button', { name: `Próxima carta: ${CARDS[23].name}` }),
+		)
+		fireEvent.click(
+			screen.getByRole('button', { name: `Carta anterior: ${CARDS[21].name}` }),
+		)
+		fireEvent.keyDown(window, { key: 'ArrowRight' })
+		fireEvent.keyDown(window, { key: 'ArrowLeft' })
+		expect(onSelect.mock.calls).toEqual([
+			[CARDS[23].id],
+			[CARDS[21].id],
+			[CARDS[23].id],
+			[CARDS[21].id],
+		])
 	})
 })

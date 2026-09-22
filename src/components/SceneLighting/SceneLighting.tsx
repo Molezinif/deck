@@ -1,9 +1,5 @@
 import { Environment, Lightformer } from '@react-three/drei'
 
-export const BACKGROUND = '#14081f'
-
-// Shared by every 3D scene (the table and the single-card showcase) so cards
-// catch the same light and read as the same object wherever they render.
 export function SceneLighting() {
 	return (
 		<>

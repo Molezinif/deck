@@ -1,18 +1,41 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { CardData } from '../../data/cards.ts'
-import { useEscapeKey } from '../../useEscapeKey.ts'
+import { useKeyDown } from '../../useKeyDown.ts'
 import { CardContent } from '../CardContent/CardContent.tsx'
 import { CardShowcase } from '../CardShowcase/CardShowcase.tsx'
 import './CardDetail.css'
 
 type CardDetailProps = {
 	card: CardData
+	previous: CardData
+	next: CardData
+	onSelect: (id: number) => void
 	onClose: () => void
 }
 
-export function CardDetail({ card, onClose }: CardDetailProps) {
+export function CardDetail({
+	card,
+	previous,
+	next,
+	onSelect,
+	onClose,
+}: CardDetailProps) {
 	const [expanded, setExpanded] = useState(false)
-	useEscapeKey(expanded ? () => setExpanded(false) : onClose)
+	const [direction, setDirection] = useState<1 | -1>(1)
+	const slot = useRef<HTMLDivElement>(null)
+
+	const go = (target: CardData, step: 1 | -1) => {
+		setDirection(step)
+		onSelect(target.id)
+	}
+	const goPrevious = () => go(previous, -1)
+	const goNext = () => go(next, 1)
+
+	useKeyDown({
+		Escape: expanded ? () => setExpanded(false) : onClose,
+		ArrowLeft: goPrevious,
+		ArrowRight: goNext,
+	})
 
 	return (
 		<div
@@ -21,27 +44,55 @@ export function CardDetail({ card, onClose }: CardDetailProps) {
 			aria-modal="true"
 			aria-label={card.name}
 		>
+			<div className="card-detail-canvas">
+				<CardShowcase
+					card={card}
+					direction={direction}
+					upcoming={[previous.front, next.front]}
+					slot={slot}
+				/>
+			</div>
 			<button
 				type="button"
-				className="card-detail-close"
+				className="card-detail-button card-detail-close"
 				onClick={onClose}
 				aria-label="Fechar"
 			>
 				×
 			</button>
-			<div className="card-detail-showcase">
-				<CardShowcase card={card} />
-				<button
-					type="button"
-					className="card-detail-expand"
-					onClick={() => setExpanded((current) => !current)}
-					aria-pressed={expanded}
-				>
-					{expanded ? 'Recolher carta' : 'Expandir carta'}
-				</button>
-			</div>
-			<div className="card-detail-body">
-				<CardContent card={card} />
+			<div className="card-detail-layout">
+				<div className="card-detail-stage">
+					<div ref={slot} className="card-detail-slot" />
+					<div className="card-detail-controls">
+						<button
+							type="button"
+							className="card-detail-button"
+							onClick={goPrevious}
+							aria-label={`Carta anterior: ${previous.name}`}
+						>
+							‹
+						</button>
+						<button
+							type="button"
+							className="card-detail-expand"
+							onClick={() => setExpanded((current) => !current)}
+							aria-pressed={expanded}
+						>
+							{expanded ? 'Recolher carta' : 'Expandir carta'}
+						</button>
+						<button
+							type="button"
+							className="card-detail-button"
+							onClick={goNext}
+							aria-label={`Próxima carta: ${next.name}`}
+						>
+							›
+						</button>
+					</div>
+				</div>
+				<div className="card-detail-body">
+					<CardContent key={card.id} card={card} />
+				</div>
 			</div>
 		</div>
 	)

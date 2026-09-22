@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 
-export function useEscapeKey(onEscape: () => void) {
+export function useKeyDown(handlers: Record<string, () => void>) {
 	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') onEscape()
-		}
+		const handleKeyDown = (event: KeyboardEvent) => handlers[event.key]?.()
 		window.addEventListener('keydown', handleKeyDown)
 		return () => window.removeEventListener('keydown', handleKeyDown)
-	}, [onEscape])
+	}, [handlers])
 }
