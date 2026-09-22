@@ -9,7 +9,7 @@ import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
 import './Gallery.css'
 
 const MAX_TILT_DEG = 10
-const GITHUB_URL = 'https://github.com/Molezinif'
+const GITHUB_URL = 'https://github.com/Molezinif/deck'
 
 type GalleryProps = {
 	cards: CardData[]

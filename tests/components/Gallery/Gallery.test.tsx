@@ -25,6 +25,6 @@ describe('Gallery', () => {
 		expect(screen.getByText('Isabelly')).toBeTruthy()
 		expect(
 			screen.getByRole('link', { name: 'GitHub' }).getAttribute('href'),
-		).toBe('https://github.com/Molezinif')
+		).toBe('https://github.com/Molezinif/deck')
 	})
 })
