@@ -8,7 +8,7 @@ As 36 cartas do baralho cigano dispostas numa mesa 3D. Clique numa carta para tr
 
 - Mesa com as 36 cartas em 9 colunas × 4 fileiras, com câmera fixa.
 - Carta em foco: ela sai da mesa, vem para a frente da câmera e o fundo desfoca (depth of field).
-- Arraste para girar a carta e ver o verso; um brilho corre pela superfície enquanto ela gira.
+- Arraste para girar a carta e ver o verso. O verniz das duas faces reflete as luzes do ambiente, e o reflexo muda com o ângulo, como numa carta de verdade.
 - Wiki de cada carta, que fecha com clique fora, no × ou com Esc.
 - Cartas com cantos arredondados e imagens trocáveis.
 
@@ -56,12 +56,12 @@ src/
     cards.json           conteúdo da wiki, na ordem do baralho
     cards.ts             junta o conteúdo com id e caminho da imagem
   components/
-    Table/               canvas, câmera, luzes, partículas e clique fora
+    Table/               canvas, câmera, luzes, reflexos, partículas e clique fora
     Deck/
       Deck.tsx           carrega as texturas e posiciona as cartas
-      Card.tsx           uma carta: animação, hover, arraste e brilho
+      Card.tsx           uma carta: animação, hover, arraste e acabamento
       layout.ts          posição de cada carta na mesa e em foco
-      geometry.ts        formato da carta e textura do brilho
+      geometry.ts        formato da carta
     BackgroundBlur/      desfoque do fundo com a carta em foco
     CardWiki/            painel com os dados da carta
 tests/                   espelha a estrutura de src/
@@ -110,11 +110,11 @@ As constantes ficam no topo de cada arquivo:
 
 | O quê | Onde |
 | --- | --- |
-| Velocidade da animação, sensibilidade do arraste, inclinação máxima, brilho | `src/components/Deck/Card.tsx` |
+| Velocidade da animação, sensibilidade do arraste, inclinação máxima e acabamento da carta (`FINISH`: aspereza e verniz) | `src/components/Deck/Card.tsx` |
 | Colunas, fileiras, espaçamento e posição de foco | `src/components/Deck/layout.ts` |
 | Proporção, tamanho e raio dos cantos | `src/components/Deck/geometry.ts` |
 | Intensidade do desfoque | `src/components/BackgroundBlur/BackgroundBlur.tsx` |
-| Cores, luzes, partículas e câmera | `src/components/Table/Table.tsx` |
+| Cores, luzes, softboxes que a carta reflete (`Lightformer`), partículas e câmera | `src/components/Table/Table.tsx` |
 
 ## Testes
 

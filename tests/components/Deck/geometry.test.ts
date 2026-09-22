@@ -5,7 +5,6 @@ import {
 	CARD_WIDTH,
 	edgeGeometry,
 	faceGeometry,
-	sheenTexture,
 } from '../../../src/components/Deck/geometry.ts'
 
 describe('faceGeometry', () => {
@@ -44,11 +43,5 @@ describe('edgeGeometry', () => {
 		const box = edgeGeometry.boundingBox
 		expect(box?.min.z).toBeCloseTo(-CARD_THICKNESS / 2)
 		expect(box?.max.z).toBeCloseTo(CARD_THICKNESS / 2)
-	})
-})
-
-describe('sheenTexture', () => {
-	it('is a canvas texture', () => {
-		expect(sheenTexture.image).toBeInstanceOf(HTMLCanvasElement)
 	})
 })

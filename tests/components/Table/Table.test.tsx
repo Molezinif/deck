@@ -4,7 +4,11 @@ import { describe, expect, it, vi } from 'vitest'
 import { Table } from '../../../src/components/Table/Table.tsx'
 import { CARDS } from '../../../src/data/cards.ts'
 
-vi.mock('@react-three/drei', () => ({ Sparkles: () => null }))
+vi.mock('@react-three/drei', () => ({
+	Environment: () => null,
+	Lightformer: () => null,
+	Sparkles: () => null,
+}))
 vi.mock('../../../src/components/Deck/Deck.tsx', () => ({ Deck: () => null }))
 vi.mock('../../../src/components/BackgroundBlur/BackgroundBlur.tsx', () => ({
 	BackgroundBlur: () => null,

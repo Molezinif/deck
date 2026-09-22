@@ -6,7 +6,6 @@ export default defineConfig({
 	test: {
 		environment: 'jsdom',
 		globals: true,
-		setupFiles: ['./tests/setup.ts'],
 		// These packages lack an "exports" map, so tests would load their CommonJS builds and a second copy of three
 		alias: [
 			{

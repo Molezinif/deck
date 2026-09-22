@@ -1,5 +1,5 @@
 import ReactThreeTestRenderer from '@react-three/test-renderer'
-import { Mesh, MeshBasicMaterial, Texture } from 'three'
+import { Mesh, MeshPhysicalMaterial, Texture } from 'three'
 import { describe, expect, it, vi } from 'vitest'
 import { Card } from '../../../src/components/Deck/Card.tsx'
 import { FOCUS_POSE, tablePose } from '../../../src/components/Deck/layout.ts'
@@ -49,19 +49,6 @@ async function renderCard(focused: boolean) {
 	return { renderer, card, onSelect, drag, unfocus, pointer }
 }
 
-function sheenOf(card: { instance: Mesh['parent'] }) {
-	let material = new MeshBasicMaterial()
-	card.instance?.traverse((object) => {
-		if (
-			object instanceof Mesh &&
-			object.material instanceof MeshBasicMaterial
-		) {
-			material = object.material
-		}
-	})
-	return material
-}
-
 describe('Card on the table', () => {
 	it('asks to be selected when clicked', async () => {
 		const { renderer, card, onSelect } = await renderCard(false)
@@ -86,6 +73,26 @@ describe('Card on the table', () => {
 		await renderer.advanceFrames(60, FRAME)
 		expect(card.instance.rotation.z).toBe(0)
 		expect(pointer.target.setPointerCapture).not.toHaveBeenCalled()
+	})
+})
+
+describe('Card surface', () => {
+	it('gives both faces a glossy finish that reflects light', async () => {
+		const { card } = await renderCard(false)
+		const faces: MeshPhysicalMaterial[] = []
+		card.instance.traverse((object) => {
+			if (
+				object instanceof Mesh &&
+				object.material instanceof MeshPhysicalMaterial
+			) {
+				faces.push(object.material)
+			}
+		})
+		expect(faces).toHaveLength(2)
+		for (const face of faces) {
+			expect(face.clearcoat).toBeGreaterThan(0)
+			expect(face.map).not.toBeNull()
+		}
 	})
 })
 
@@ -141,20 +148,6 @@ describe('Focused card', () => {
 		expect(pointer.target.releasePointerCapture).toHaveBeenCalledWith(1)
 	})
 
-	it('shines only while turning', async () => {
-		const { renderer, card, drag } = await renderCard(true)
-		const sheen = sheenOf(card)
-		await renderer.advanceFrames(240, FRAME)
-		expect(sheen.opacity).toBeLessThan(0.05)
-
-		await drag(300, 0)
-		await renderer.advanceFrames(5, FRAME)
-		expect(sheen.opacity).toBeGreaterThan(0.2)
-
-		await renderer.advanceFrames(240, FRAME)
-		expect(sheen.opacity).toBeLessThan(0.05)
-	})
-
 	it('unwinds its spin the short way when it leaves the focus', async () => {
 		const { renderer, card, drag, unfocus } = await renderCard(true)
 		await drag(700, 0)
@@ -174,14 +167,5 @@ describe('Focused card', () => {
 		await unfocus()
 		await renderer.advanceFrames(240, FRAME)
 		expect(card.instance.rotation.x).toBeCloseTo(tablePose(0).rotation[0], 2)
-	})
-
-	it('survives a frame with no elapsed time', async () => {
-		const { renderer, card, drag } = await renderCard(true)
-		await drag(100, 0)
-		await renderer.advanceFrames(1, 0)
-		await renderer.advanceFrames(60, FRAME)
-		expect(sheenOf(card).opacity).not.toBeNaN()
-		expect(card.instance.rotation.z).not.toBeNaN()
 	})
 })

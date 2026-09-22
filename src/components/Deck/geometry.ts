@@ -1,10 +1,4 @@
-import {
-	CanvasTexture,
-	ExtrudeGeometry,
-	Shape,
-	ShapeGeometry,
-	SRGBColorSpace,
-} from 'three'
+import { ExtrudeGeometry, Shape, ShapeGeometry } from 'three'
 
 const ARTWORK_ASPECT = 791 / 1169
 export const CARD_HEIGHT = 0.88
@@ -48,24 +42,3 @@ export const edgeGeometry = new ExtrudeGeometry(shape, {
 	curveSegments: CURVE_SEGMENTS,
 })
 edgeGeometry.translate(0, 0, -CARD_THICKNESS / 2)
-
-function createSheenTexture() {
-	const size = 256
-	const canvas = document.createElement('canvas')
-	canvas.width = size
-	canvas.height = size
-	const context = canvas.getContext('2d')
-	if (context) {
-		const gradient = context.createLinearGradient(0, 0, size, size)
-		gradient.addColorStop(0.35, 'black')
-		gradient.addColorStop(0.5, 'white')
-		gradient.addColorStop(0.65, 'black')
-		context.fillStyle = gradient
-		context.fillRect(0, 0, size, size)
-	}
-	const texture = new CanvasTexture(canvas)
-	texture.colorSpace = SRGBColorSpace
-	return texture
-}
-
-export const sheenTexture = createSheenTexture()
