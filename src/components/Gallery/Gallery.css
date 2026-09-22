@@ -124,3 +124,46 @@
 .gallery-item:focus-visible .gallery-label {
 	opacity: 1;
 }
+
+.gallery-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	padding: 8px 20px max(28px, env(safe-area-inset-bottom));
+	font-size: 0.78rem;
+	letter-spacing: 0.02em;
+	color: rgb(244 239 230 / 0.45);
+}
+
+.gallery-footer p {
+	margin: 0;
+}
+
+.gallery-footer strong {
+	font-weight: normal;
+	color: rgb(242 211 138 / 0.75);
+}
+
+.gallery-github {
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 999px;
+	color: inherit;
+	transition:
+		color 200ms,
+		background 200ms;
+}
+
+.gallery-github:hover,
+.gallery-github:focus-visible {
+	color: var(--gold);
+	background: rgb(242 211 138 / 0.1);
+}
+
+.gallery-github:focus-visible {
+	outline: 2px solid var(--gold);
+	outline-offset: 2px;
+}

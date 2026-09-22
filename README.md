@@ -133,6 +133,11 @@ As constantes ficam no topo de cada arquivo:
 
 Os componentes 3D são testados com o React Three Test Renderer, que monta a cena sem WebGL e permite disparar eventos e avançar quadros. Os componentes HTML usam o Testing Library com jsdom.
 
+## Créditos
+
+- Arte das cartas: Luiddy
+- Textos das cartas: Isabelly
+
 ## Licença
 
 Todos os direitos reservados. Veja [LICENSE](LICENSE).

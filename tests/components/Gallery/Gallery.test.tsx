@@ -6,7 +6,7 @@ import { CARDS } from '../../../src/data/cards.ts'
 describe('Gallery', () => {
 	it('shows every card as a thumbnail', () => {
 		render(<Gallery cards={CARDS} activeId={null} onSelect={() => {}} />)
-		expect(screen.getAllByRole('img')).toHaveLength(36)
+		expect(screen.getAllByRole('button')).toHaveLength(36)
 		expect(screen.getByAltText(CARDS[0].name)).toBeTruthy()
 	})
 
@@ -17,5 +17,14 @@ describe('Gallery', () => {
 		if (!button) throw new Error('gallery item button not found')
 		fireEvent.click(button)
 		expect(onSelect).toHaveBeenCalledWith(CARDS[22].id)
+	})
+
+	it('credits the team and links to GitHub', () => {
+		render(<Gallery cards={CARDS} activeId={null} onSelect={() => {}} />)
+		expect(screen.getByText('Luiddy')).toBeTruthy()
+		expect(screen.getByText('Isabelly')).toBeTruthy()
+		expect(
+			screen.getByRole('link', { name: 'GitHub' }).getAttribute('href'),
+		).toBe('https://github.com/Molezinif')
 	})
 })
