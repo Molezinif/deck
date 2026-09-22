@@ -1,0 +1,362 @@
+[
+	{
+		"name": "Cavaleiro",
+		"playingCard": "9 de copas",
+		"keywords": ["notícias", "velocidade", "mensagem"],
+		"meaning": "Novidades chegam rapidamente. Uma mensagem importante está a caminho. Movimento e dinamismo caracterizam o momento.",
+		"love": "Um pretendente ou admirador se aproxima. Notícias sentimentais chegam logo.",
+		"work": "Proposta ou oferta de trabalho surge. Ação rápida é necessária.",
+		"health": "Energia elevada. Momento propício para iniciar tratamentos.",
+		"synthesis": ["novidade", "velocidade", "aproximação"]
+	},
+	{
+		"name": "Trevo",
+		"playingCard": "6 de ouros",
+		"keywords": ["sorte", "oportunidade", "pequenas alegrias"],
+		"meaning": "Pequenas fortunas e bênçãos do cotidiano. Sorte passageira mas genuína. Aproveite os momentos simples.",
+		"love": "Pequenos gestos de carinho trazem felicidade. Romance leve e descontraído.",
+		"work": "Oportunidade pequena mas útil surge. Não a subestime.",
+		"health": "Recuperação favorável. Ânimo e disposição retornam.",
+		"synthesis": ["sorte", "leveza", "alegria"]
+	},
+	{
+		"name": "Navio",
+		"playingCard": "10 de espadas",
+		"keywords": ["viagem", "distância", "comércio"],
+		"meaning": "Jornadas, deslocamentos e negócios à distância. O horizonte se expande. Mudanças vindas de longe.",
+		"love": "Relacionamento à distância ou com estrangeiro. Separação temporária.",
+		"work": "Negócios internacionais ou viagem a trabalho. Comércio promissor.",
+		"health": "Mudança de ares pode ser benéfica. Considere tratamentos alternativos.",
+		"synthesis": ["movimento", "expansão", "distância"]
+	},
+	{
+		"name": "Casa",
+		"playingCard": "rei de copas",
+		"keywords": ["lar", "segurança", "família"],
+		"meaning": "Estabilidade, proteção e raízes. O ambiente doméstico está em foco. Propriedade e pertencimento.",
+		"love": "União estável e vida a dois. Desejo de formar família ou morar junto.",
+		"work": "Negócio próprio ou trabalho em casa. Ambiente profissional estável.",
+		"health": "Cuidados no próprio lar. Conforto e recuperação em ambiente familiar.",
+		"synthesis": ["estabilidade", "lar", "proteção"]
+	},
+	{
+		"name": "Árvore",
+		"playingCard": "7 de copas",
+		"keywords": ["saúde", "crescimento", "raízes"],
+		"meaning": "Crescimento lento e sólido. Saúde e vitalidade. Conexão com ancestrais e origens. Paciência.",
+		"love": "Relacionamento duradouro com raízes profundas. Amor que amadurece com o tempo.",
+		"work": "Carreira sólida que cresce gradualmente. Investimentos de longo prazo.",
+		"health": "Saúde geral em evidência. Trate o corpo com cuidado e paciência.",
+		"synthesis": ["crescimento", "saúde", "paciência"]
+	},
+	{
+		"name": "Nuvens",
+		"playingCard": "rei de paus",
+		"keywords": ["confusão", "incerteza", "obstáculo"],
+		"meaning": "Situação nebulosa e confusa. Falta de clareza temporária. A tempestade passa — espere.",
+		"love": "Mal-entendidos e insegurança no relacionamento. Comunicação precisa melhorar.",
+		"work": "Incerteza profissional. Adie decisões importantes até a visão ficar clara.",
+		"health": "Diagnóstico incerto ou período de baixa energia. Busque segunda opinião.",
+		"synthesis": ["confusão", "espera", "transitoriedade"]
+	},
+	{
+		"name": "Serpente",
+		"playingCard": "dama de paus",
+		"keywords": ["sabedoria", "traição", "desejo"],
+		"meaning": "Pessoa inteligente porém manipuladora nas redondezas. Desejo intenso. Intuição aguçada.",
+		"love": "Atração intensa mas possível traição. Ciúme e possessividade surgem.",
+		"work": "Colega invejoso ou competição desleal. Fique atento às suas costas.",
+		"health": "Tensão acumulada que precisa ser liberada. Cuide do sistema nervoso.",
+		"synthesis": ["cuidado", "desejo", "inteligência"]
+	},
+	{
+		"name": "Caixão",
+		"playingCard": "9 de ouros",
+		"keywords": ["fim", "transformação", "renascimento"],
+		"meaning": "Encerramento de um ciclo. Transformação profunda. O que termina abre espaço para o novo.",
+		"love": "Fim de relacionamento ou de uma fase do amor. Deixe ir para recomeçar.",
+		"work": "Término de emprego ou projeto. Mudança de carreira se aproxima.",
+		"health": "Período de cura — algo precisa morrer para o corpo se renovar.",
+		"synthesis": ["encerramento", "transformação", "renovação"]
+	},
+	{
+		"name": "Buquê",
+		"playingCard": "dama de espadas",
+		"keywords": ["presente", "beleza", "reconhecimento"],
+		"meaning": "Presente, elogio e reconhecimento chegam. Felicidade genuína. Momentos de alegria e gratidão.",
+		"love": "Romance floresce. Galanteios, presentes e momentos encantadores.",
+		"work": "Reconhecimento público do seu trabalho. Recompensa ou bônus a caminho.",
+		"health": "Saúde em flor. Beleza interior e exterior em evidência.",
+		"synthesis": ["alegria", "reconhecimento", "presentes"]
+	},
+	{
+		"name": "Foice",
+		"playingCard": "valete de ouros",
+		"keywords": ["decisão", "corte", "colheita"],
+		"meaning": "Decisão cortante e definitiva. Colha o que plantou. Elimine o que não serve mais.",
+		"love": "Decisão drástica no amor. Corte necessário com o passado.",
+		"work": "Hora de colher resultados ou tomar decisão definitiva na carreira.",
+		"health": "Intervenção necessária. Corte hábitos prejudiciais à saúde.",
+		"synthesis": ["decisão", "corte", "colheita"]
+	},
+	{
+		"name": "Chicote",
+		"playingCard": "valete de paus",
+		"keywords": ["conflito", "repetição", "energia"],
+		"meaning": "Conflitos repetitivos e discussões intensas. Energia que precisa de direção. Padrões que se repetem.",
+		"love": "Brigas e tensão no relacionamento. Ciclo negativo se repete.",
+		"work": "Ambiente de trabalho conflituoso. Esforço intenso e repetitivo.",
+		"health": "Inflamação ou dor crônica. Evite estresse excessivo.",
+		"synthesis": ["conflito", "intensidade", "padrão"]
+	},
+	{
+		"name": "Pássaros",
+		"playingCard": "7 de ouros",
+		"keywords": ["conversa", "ansiedade", "casal"],
+		"meaning": "Muita conversa e troca de ideias. Casal de idosos ou parceiros estabelecidos. Pensamentos ansiosos.",
+		"love": "Casal unido pela comunicação. Diálogo constante — às vezes em excesso.",
+		"work": "Reuniões, negociações e muito diálogo. Comunicação é a chave.",
+		"health": "Ansiedade e nervosismo em alta. Cuide da mente e respire.",
+		"synthesis": ["comunicação", "casal", "agitação"]
+	},
+	{
+		"name": "Criança",
+		"playingCard": "valete de espadas",
+		"keywords": ["início", "inocência", "novo"],
+		"meaning": "Começos frescos e inocentes. Algo novo e pequeno nasce. Abertura para o aprendizado.",
+		"love": "Novo amor ou fase de romance inicial. Ingenuidade e pureza nos sentimentos.",
+		"work": "Novo emprego, projeto iniciante ou retorno aos estudos.",
+		"health": "Período de cura e renascimento. Trate seu corpo com gentileza.",
+		"synthesis": ["início", "novidade", "inocência"]
+	},
+	{
+		"name": "Raposa",
+		"playingCard": "9 de paus",
+		"keywords": ["astúcia", "engano", "adaptação"],
+		"meaning": "Astúcia e sagacidade são necessárias. Alguém pode estar enganando você — ou é você quem se ilude.",
+		"love": "Desconfie de aparências. Alguém pode não ser quem diz ser.",
+		"work": "Necessário ser estratégico. Cuidado com colegas oportunistas.",
+		"health": "Sintomas que enganam. Busque diagnóstico preciso e desconfie do óbvio.",
+		"synthesis": ["astúcia", "cuidado", "estratégia"]
+	},
+	{
+		"name": "Urso",
+		"playingCard": "10 de paus",
+		"keywords": ["força", "autoridade", "proteção"],
+		"meaning": "Figura de autoridade e proteção. Força bruta mas protetora. Poder e liderança em jogo.",
+		"love": "Parceiro protetor e forte. Cuidado com o ciúme possessivo.",
+		"work": "Chefe ou mentor em destaque. Momento de demonstrar liderança.",
+		"health": "Força física e imunidade elevadas. Cuide do peso e da pressão.",
+		"synthesis": ["força", "autoridade", "proteção"]
+	},
+	{
+		"name": "Estrela",
+		"playingCard": "6 de copas",
+		"keywords": ["esperança", "guia", "inspiração"],
+		"meaning": "Esperança e inspiração iluminam o caminho. Sonhos que podem se tornar realidade. Orientação divina.",
+		"love": "Amor ideal e romântico. Almas gêmeas e conexões espirituais.",
+		"work": "Sucesso e reconhecimento a caminho. Siga sua estrela guia.",
+		"health": "Período favorável para cura holística e espiritual.",
+		"synthesis": ["esperança", "inspiração", "guia"]
+	},
+	{
+		"name": "Cegonha",
+		"playingCard": "dama de copas",
+		"keywords": ["mudança", "nascimento", "transição"],
+		"meaning": "Grande mudança se aproxima. Novo ciclo de vida nasce. Transformação positiva e esperada.",
+		"love": "Novo início no amor. Possibilidade de gravidez ou chegada de bebê.",
+		"work": "Mudança de emprego ou promoção. Nova fase profissional começa.",
+		"health": "Boa notícia sobre saúde. Gravidez ou renovação física.",
+		"synthesis": ["mudança", "renascimento", "transição"]
+	},
+	{
+		"name": "Cachorro",
+		"playingCard": "10 de copas",
+		"keywords": ["amizade", "lealdade", "confiança"],
+		"meaning": "Amigo fiel e leal está presente. Confiança que não decepciona. Apoio incondicional.",
+		"love": "Relacionamento baseado em amizade e lealdade profunda.",
+		"work": "Colega ou sócio de confiança. Trabalho em equipe harmônico.",
+		"health": "Apoio emocional de amigos favorece a cura.",
+		"synthesis": ["lealdade", "amizade", "confiança"]
+	},
+	{
+		"name": "Torre",
+		"playingCard": "6 de espadas",
+		"keywords": ["solidão", "instituição", "isolamento"],
+		"meaning": "Solidão escolhida ou imposta. Grandes instituições, leis e estruturas. Isolamento temporário.",
+		"love": "Solidão no amor. Barreiras emocionais dificultam a intimidade.",
+		"work": "Empresa grande, governo ou carreira solitária. Limite de crescimento.",
+		"health": "Isolamento que afeta a saúde mental. Busque conexão.",
+		"synthesis": ["isolamento", "estrutura", "solidão"]
+	},
+	{
+		"name": "Jardim",
+		"playingCard": "8 de espadas",
+		"keywords": ["social", "público", "comunidade"],
+		"meaning": "Vida social ativa e encontros públicos. Comunidade e eventos. Sua imagem pública está em jogo.",
+		"love": "Romance começa em eventos sociais. Relacionamento exposto ao público.",
+		"work": "Networking e visibilidade profissional. Trabalho com o público.",
+		"health": "Atividades ao ar livre e em grupo beneficiam a saúde.",
+		"synthesis": ["socialização", "público", "comunidade"]
+	},
+	{
+		"name": "Montanha",
+		"playingCard": "8 de paus",
+		"keywords": ["obstáculo", "desafio", "perseverança"],
+		"meaning": "Grande obstáculo no caminho. Superar requer perseverança. O desafio forma o caráter.",
+		"love": "Dificuldades sérias no relacionamento. Resistência de terceiros.",
+		"work": "Bloqueio profissional temporário. Perseverança trará resultado.",
+		"health": "Doença séria que exige determinação para superar.",
+		"synthesis": ["obstáculo", "desafio", "força"]
+	},
+	{
+		"name": "Caminho",
+		"playingCard": "dama de ouros",
+		"keywords": ["escolha", "decisão", "bifurcação"],
+		"meaning": "Cruzamento de caminhos e escolha inevitável. Duas direções, apenas uma pode ser seguida. Decida.",
+		"love": "Escolha entre dois pretendentes ou dois caminhos no amor.",
+		"work": "Decisão de carreira importante. Dois caminhos profissionais se abrem.",
+		"health": "Decisão sobre tratamento. Duas opções — confie na sua intuição.",
+		"synthesis": ["escolha", "decisão", "bifurcação"]
+	},
+	{
+		"name": "Rato",
+		"playingCard": "7 de paus",
+		"keywords": ["perda", "furto", "deterioração"],
+		"meaning": "Algo está sendo drenado lentamente. Perdas e desgastes acumulados. Cuide do que tem valor.",
+		"love": "Desgaste no relacionamento. Pequenas mentiras corroem a confiança.",
+		"work": "Perdas financeiras ou furto de ideias. Proteja seu trabalho.",
+		"health": "Energia se esvaindo. Cuide da alimentação e sono.",
+		"synthesis": ["perda", "desgaste", "cuidado"]
+	},
+	{
+		"name": "Coração",
+		"playingCard": "valete de copas",
+		"keywords": ["amor", "emoção", "sentimento"],
+		"meaning": "Amor em toda a sua profundidade. Sentimentos intensos e verdadeiros. O coração fala mais alto.",
+		"love": "Amor genuíno e apaixonado. Declaração de sentimentos. Parceria do coração.",
+		"work": "Trabalhe com o que ama. Paixão pelo que faz traz sucesso.",
+		"health": "Saúde do coração em foco. Cuide das emoções para cuidar do corpo.",
+		"synthesis": ["amor", "emoção", "paixão"]
+	},
+	{
+		"name": "Anel",
+		"playingCard": "ás de paus",
+		"keywords": ["compromisso", "contrato", "aliança"],
+		"meaning": "Compromisso formal e aliança duradoura. Contratos assinados. União selada.",
+		"love": "Noivado, casamento ou compromisso sério. O amor se formaliza.",
+		"work": "Contrato importante firmado. Parceria profissional de longo prazo.",
+		"health": "Comprometimento com rotina de saúde. Tratamento de longa duração.",
+		"synthesis": ["compromisso", "contrato", "aliança"]
+	},
+	{
+		"name": "Livro",
+		"playingCard": "10 de ouros",
+		"keywords": ["segredo", "estudo", "conhecimento"],
+		"meaning": "Conhecimento oculto e segredos guardados. Estudo e pesquisa são necessários. Revelação futura.",
+		"love": "Segredos no relacionamento. Algo ainda não foi revelado. Paciência.",
+		"work": "Estudo e qualificação são essenciais agora. Informação privilegiada.",
+		"health": "Diagnóstico ainda incompleto. Pesquise e se informe sobre sua condição.",
+		"synthesis": ["segredo", "conhecimento", "revelação"]
+	},
+	{
+		"name": "Carta",
+		"playingCard": "7 de espadas",
+		"keywords": ["mensagem", "notícia", "documento"],
+		"meaning": "Mensagem, carta ou documento importante chega. Comunicação escrita em destaque.",
+		"love": "Mensagem de amor ou notícia sentimental. Declaração por escrito.",
+		"work": "Contrato, proposta ou resposta oficial a caminho.",
+		"health": "Resultado de exame ou laudo médico chega em breve.",
+		"synthesis": ["mensagem", "documento", "notícia"]
+	},
+	{
+		"name": "Cigano",
+		"playingCard": "ás de copas",
+		"keywords": ["homem", "consultante", "masculino"],
+		"meaning": "Figura masculina central na questão. Pode representar o próprio consultante ou homem importante.",
+		"love": "O homem da situação amorosa. Características do parceiro.",
+		"work": "Colega, chefe ou sócio masculino em destaque.",
+		"health": "Saúde do homem em foco. Atenção à saúde masculina.",
+		"synthesis": ["masculino", "protagonista", "força"]
+	},
+	{
+		"name": "Cigana",
+		"playingCard": "ás de espadas",
+		"keywords": ["mulher", "consultante", "feminino"],
+		"meaning": "Figura feminina central na questão. Pode representar a própria consultante ou mulher importante.",
+		"love": "A mulher da situação amorosa. Características da parceira.",
+		"work": "Colega, chefe ou sócia feminina em destaque.",
+		"health": "Saúde da mulher em foco. Atenção à saúde feminina.",
+		"synthesis": ["feminino", "protagonista", "intuição"]
+	},
+	{
+		"name": "Lírios",
+		"playingCard": "rei de espadas",
+		"keywords": ["paz", "maturidade", "pureza"],
+		"meaning": "Paz e harmonia chegam após o esforço. Maturidade e sabedoria da experiência. Pureza de intenção.",
+		"love": "Amor maduro, tranquilo e harmonioso. Estabilidade sentimental.",
+		"work": "Carreira madura e respeitada. Trabalho com ética e harmonia.",
+		"health": "Período de paz e recuperação tranquila. Saúde estável.",
+		"synthesis": ["paz", "harmonia", "maturidade"]
+	},
+	{
+		"name": "Sol",
+		"playingCard": "ás de ouros",
+		"keywords": ["sucesso", "clareza", "vitalidade"],
+		"meaning": "Grande sucesso e clareza total. Energia vital no seu pico. Tudo que estava escuro se ilumina.",
+		"love": "Amor radiante e feliz. Período de ouro no relacionamento.",
+		"work": "Sucesso pleno, reconhecimento e prosperidade. Brilhe!",
+		"health": "Saúde excelente e energia abundante. Período de grande vitalidade.",
+		"synthesis": ["sucesso", "clareza", "vitalidade"]
+	},
+	{
+		"name": "Lua",
+		"playingCard": "8 de copas",
+		"keywords": ["fama", "intuição", "emoção"],
+		"meaning": "Reconhecimento público e fama. Emoções profundas e intuição aguçada. O inconsciente fala.",
+		"love": "Amor profundo e emocional. Intuição guia o coração. Romance intenso.",
+		"work": "Reconhecimento na carreira criativa. Trabalho com arte ou mistério.",
+		"health": "Saúde emocional em foco. Ciclos hormonais e sono merecem atenção.",
+		"synthesis": ["intuição", "emoção", "fama"]
+	},
+	{
+		"name": "Chave",
+		"playingCard": "8 de ouros",
+		"keywords": ["solução", "destino", "abertura"],
+		"meaning": "A solução existe e está ao seu alcance. Porta se abre. O destino favorece. Acesso concedido.",
+		"love": "Chave para o coração do outro encontrada. Relacionamento desbloqueado.",
+		"work": "Solução para o problema profissional está clara. Porta de oportunidade se abre.",
+		"health": "Descoberta do que estava impedindo a cura. Tratamento eficaz encontrado.",
+		"synthesis": ["solução", "abertura", "destino"]
+	},
+	{
+		"name": "Peixes",
+		"playingCard": "rei de ouros",
+		"keywords": ["dinheiro", "fluxo", "abundância"],
+		"meaning": "Fluxo financeiro favorável. Abundância e prosperidade material. Negócios fluem bem.",
+		"love": "Amor abundante e generoso. Parceiro que proporciona segurança material.",
+		"work": "Finanças positivas. Negócios e investimentos fluem bem.",
+		"health": "Fluidos corporais e circulação em foco. Hidrate-se e cuide do metabolismo.",
+		"synthesis": ["abundância", "fluxo", "prosperidade"]
+	},
+	{
+		"name": "Âncora",
+		"playingCard": "9 de espadas",
+		"keywords": ["estabilidade", "perseverança", "fixação"],
+		"meaning": "Estabilidade conquistada com esforço. Perseverança que finalmente encontra porto seguro.",
+		"love": "Relacionamento estável e duradouro. Amor que ancora e sustenta.",
+		"work": "Posição profissional sólida e segura. Emprego estável por muito tempo.",
+		"health": "Estabilidade na saúde após período difícil. Persistência cura.",
+		"synthesis": ["estabilidade", "segurança", "persistência"]
+	},
+	{
+		"name": "Cruz",
+		"playingCard": "6 de paus",
+		"keywords": ["fardo", "destino", "sacrifício"],
+		"meaning": "Fardo inevitável que deve ser carregado. Karma e destino em ação. Sacrifício que transforma.",
+		"love": "Sacrifício pelo amor. Relacionamento que exige dedicação total.",
+		"work": "Trabalho árduo e responsabilidade pesada. Vocação versus obrigação.",
+		"health": "Condição crônica que exige aceitação e adaptação.",
+		"synthesis": ["fardo", "destino", "sacrifício"]
+	}
+]

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="630" height="880" viewBox="0 0 630 880">
+  <title>verso</title>
+  <defs>
+    <pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="40" height="40" fill="#8b1e2d"/>
+      <rect width="20" height="20" fill="#a8283a"/>
+    </pattern>
+  </defs>
+  <rect width="630" height="880" fill="#f4efe6"/>
+  <rect x="30" y="30" width="570" height="820" rx="24" fill="url(#p)" stroke="#f4efe6" stroke-width="6"/>
+</svg>
