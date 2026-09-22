@@ -12,7 +12,7 @@
 		"prepare": "lefthook install && pnpm i18n",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --strategy localStorage preferredLanguage baseLocale --emit-ts-declarations"
+		"i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --strategy localStorage baseLocale --emit-ts-declarations"
 	},
 	"dependencies": {
 		"@react-three/drei": "^10.7.8",

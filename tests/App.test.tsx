@@ -64,6 +64,14 @@ describe('App', () => {
 		expect(detail()).toBeNull()
 	})
 
+	it('defaults to Portuguese whatever the browser language', () => {
+		localStorage.clear()
+		vi.spyOn(navigator, 'languages', 'get').mockReturnValue(['en-US'])
+		render(<App />)
+		click('carta 23')
+		expect(detail()?.textContent).toBe(CARDS[22].name)
+	})
+
 	it('shows the English deck when the locale is English', () => {
 		localStorage.setItem(localStorageKey, 'en')
 		render(<App />)

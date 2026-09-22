@@ -1,6 +1,6 @@
 # Baralho Cigano
 
-The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) in a scrollable grid. Tap a card to open its page: a 3D card you can spin with the mouse or a finger, catching the light as it turns, next to its full reading, with meaning, love, work, health and synthesis. Available in English and Portuguese.
+The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) in a scrollable grid. Tap a card to open its page: a 3D card you can spin with the mouse or a finger, catching the light as it turns, next to its full reading, with meaning, love, work, health and synthesis. In Portuguese, with an English version.
 
 ![The card grid and an open card page](docs/preview.png)
 
@@ -12,7 +12,7 @@ The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) i
 - The ‹ › buttons and the ← → keys move to the previous or next card.
 - The expand button enlarges the card. On desktop and in landscape the card sits next to the text; on portrait phones the text rises as a sheet over the card.
 - Close with the × button, with Esc, or by collapsing the expanded card.
-- English and Portuguese, picked from the browser language and switchable in the footer. The choice is remembered.
+- Portuguese by default, with an English version one click away in the footer. The choice is remembered.
 - With "reduce motion" turned on in the system, animations become simple fades.
 
 ## Stack
@@ -127,7 +127,7 @@ English entries have the same fields except `image`, which comes from the Portug
 
 Interface texts live in `messages/en.json` and `messages/pt.json` and are used in code as typed functions, like `m.close()`. After editing them, `pnpm dev` picks the change up on its own.
 
-To add a language, add its code to `locales` in `project.inlang/settings.json`, create `messages/<code>.json`, write a `src/data/cards.<code>.json` and register it in `DECKS` in `src/data/cards.ts`. English is the fallback for browsers in a language the site doesn't have.
+To add a language, add its code to `locales` in `project.inlang/settings.json`, create `messages/<code>.json`, write a `src/data/cards.<code>.json` and register it in `DECKS` in `src/data/cards.ts`. Portuguese (`baseLocale`) is always the default; other languages only show up when picked in the footer.
 
 ### Fine tuning
 
