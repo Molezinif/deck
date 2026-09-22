@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { CARDS } from '../../src/data/cards.ts'
 
-const publicImages = Object.keys(import.meta.glob('../../public/cards/*')).map(
-	(path) => path.replace('../../public', ''),
-)
+const publicImages = Object.keys(
+	import.meta.glob(['../../public/cards/*', '../../public/cards/thumbs/*']),
+).map((path) => path.replace('../../public', ''))
 
 describe('CARDS', () => {
 	it('has the 36 cards of the cigano deck', () => {
@@ -30,6 +30,7 @@ describe('CARDS', () => {
 	it('points every card to an image that exists', () => {
 		for (const card of CARDS) {
 			expect(publicImages).toContain(card.front)
+			expect(publicImages).toContain(card.thumbnail)
 		}
 	})
 
@@ -38,8 +39,13 @@ describe('CARDS', () => {
 		expect(CARDS[1].front).toBe('/cards/cavaleiro2.webp')
 	})
 
+	it('shows a lighter copy of the custom artwork in the grid', () => {
+		expect(CARDS[0].thumbnail).toBe('/cards/thumbs/cavaleiro1.webp')
+	})
+
 	it('falls back to the zero padded placeholder', () => {
 		expect(CARDS[2].front).toBe('/cards/03.svg')
+		expect(CARDS[2].thumbnail).toBe('/cards/03.svg')
 	})
 
 	it('fills every wiki field', () => {

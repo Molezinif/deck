@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="630" height="880" viewBox="0 0 630 880">
+<svg xmlns="http://www.w3.org/2000/svg" width="791" height="1169" viewBox="0 0 791 1169">
   <title>Sol</title>
-  <rect width="630" height="880" fill="#f4efe6"/>
+  <rect width="791" height="1169" fill="#f4efe6"/>
   <g font-family="Georgia, serif" fill="#111" text-anchor="middle">
-    <text x="315" y="470" font-size="260">31</text>
-    <text x="315" y="760" font-size="72">Sol</text>
+    <text x="395.5" y="630" font-size="330">31</text>
+    <text x="395.5" y="1010" font-size="92">Sol</text>
   </g>
 </svg>
