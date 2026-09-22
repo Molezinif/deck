@@ -40,6 +40,7 @@ export function CardShowcase(props: CardShowcaseProps) {
 	return (
 		<Canvas
 			style={{ touchAction: 'none' }}
+			flat
 			dpr={[1, 2]}
 			camera={{ position: [0, 0, 1.35], fov: 40 }}
 		>

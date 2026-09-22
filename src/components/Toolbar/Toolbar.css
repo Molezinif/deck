@@ -11,7 +11,6 @@
 	border-radius: 999px;
 	background: var(--glass);
 	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
 	animation: fade 500ms 300ms ease both;
 }
 

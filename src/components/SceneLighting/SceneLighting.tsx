@@ -17,6 +17,11 @@ export function SceneLighting() {
 		<>
 			<ambientLight {...AMBIENT[theme]} />
 			<directionalLight position={[2, 5, 3]} intensity={1.6} />
+			<directionalLight
+				position={[0, 0.5, 4]}
+				intensity={0.9}
+				color="#fff6e8"
+			/>
 			<pointLight position={[0, 1.5, 0]} {...ACCENT[theme]} />
 			<Environment resolution={256} frames={1} environmentIntensity={0.6}>
 				<Lightformer

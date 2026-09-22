@@ -124,7 +124,6 @@ button:focus-visible {
 
 .theme-switching::view-transition-new(root) {
 	mask: url("./assets/theme-star.svg") center / 0 no-repeat;
-	-webkit-mask: url("./assets/theme-star.svg") center / 0 no-repeat;
 	animation: theme-reveal 1400ms both;
 }
 
