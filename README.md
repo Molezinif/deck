@@ -135,8 +135,8 @@ Os componentes 3D são testados com o React Three Test Renderer, que monta a cen
 
 ## Créditos
 
-- Arte das cartas: Luiddy
-- Textos das cartas: Isabelly
+- Arte das cartas: [Luiddy](https://www.instagram.com/luiddx/)
+- Textos das cartas: [Isabelly](https://www.instagram.com/isay.rm/)
 
 ## Licença
 

@@ -140,9 +140,17 @@
 	margin: 0;
 }
 
-.gallery-footer strong {
-	font-weight: normal;
+.gallery-footer p a {
 	color: rgb(242 211 138 / 0.75);
+	text-decoration: none;
+	transition: color 200ms;
+}
+
+.gallery-footer p a:hover,
+.gallery-footer p a:focus-visible {
+	color: var(--gold);
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
 .gallery-github {

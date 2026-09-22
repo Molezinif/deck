@@ -21,8 +21,10 @@ describe('Gallery', () => {
 
 	it('credits the team and links to GitHub', () => {
 		render(<Gallery cards={CARDS} activeId={null} onSelect={() => {}} />)
-		expect(screen.getByText('Luiddy')).toBeTruthy()
-		expect(screen.getByText('Isabelly')).toBeTruthy()
+		const link = (name: string) =>
+			screen.getByRole('link', { name }).getAttribute('href')
+		expect(link('Luiddy')).toBe('https://www.instagram.com/luiddx/')
+		expect(link('Isabelly')).toBe('https://www.instagram.com/isay.rm/')
 		expect(
 			screen.getByRole('link', { name: 'GitHub' }).getAttribute('href'),
 		).toBe('https://github.com/Molezinif/deck')

@@ -10,6 +10,14 @@ import './Gallery.css'
 
 const MAX_TILT_DEG = 10
 const GITHUB_URL = 'https://github.com/Molezinif/deck'
+const CREDITS = [
+	{ role: 'Arte de', name: 'Luiddy', url: 'https://www.instagram.com/luiddx/' },
+	{
+		role: 'Textos de',
+		name: 'Isabelly',
+		url: 'https://www.instagram.com/isay.rm/',
+	},
+]
 
 type GalleryProps = {
 	cards: CardData[]
@@ -80,7 +88,15 @@ export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
 			</div>
 			<footer className="gallery-footer">
 				<p>
-					Arte de <strong>Luiddy</strong> · Textos de <strong>Isabelly</strong>
+					{CREDITS.map((credit, i) => (
+						<span key={credit.name}>
+							{i > 0 && ' · '}
+							{credit.role}{' '}
+							<a href={credit.url} target="_blank" rel="noreferrer">
+								{credit.name}
+							</a>
+						</span>
+					))}
 				</p>
 				<a
 					href={GITHUB_URL}
