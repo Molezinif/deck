@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="630" height="880" viewBox="0 0 630 880">
   <title>Pássaros</title>
   <rect width="630" height="880" fill="#f4efe6"/>
-  <rect x="30" y="30" width="570" height="820" rx="24" fill="none" stroke="#8b1e2d" stroke-width="6"/>
   <g font-family="Georgia, serif" fill="#111" text-anchor="middle">
     <text x="315" y="470" font-size="260">12</text>
     <text x="315" y="760" font-size="72">Pássaros</text>

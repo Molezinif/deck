@@ -33,11 +33,8 @@
 	aspect-ratio: 791 / 1169;
 	object-fit: cover;
 	border-radius: 10px;
-	border: 1px solid rgb(201 160 255 / 0.25);
 	background: #f4efe6;
-	transition:
-		border-color 220ms,
-		box-shadow 220ms;
+	transition: box-shadow 220ms;
 }
 
 .gallery-item span {
@@ -56,6 +53,5 @@
 .gallery-item:hover img,
 .gallery-item:focus-visible img,
 .gallery-item:active img {
-	border-color: rgb(242 211 138 / 0.7);
 	box-shadow: 0 16px 28px rgb(0 0 0 / 0.45);
 }
