@@ -25,6 +25,7 @@ describe('Gallery', () => {
 			screen.getByRole('link', { name }).getAttribute('href')
 		expect(link('Luiddy')).toBe('https://www.instagram.com/luiddx/')
 		expect(link('Isabelly')).toBe('https://www.instagram.com/isay.rm/')
+		expect(link('Gabriel')).toBe('https://www.instagram.com/molezinif/')
 		expect(
 			screen.getByRole('link', { name: 'GitHub' }).getAttribute('href'),
 		).toBe('https://github.com/Molezinif/deck')

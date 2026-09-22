@@ -17,6 +17,11 @@ const CREDITS = [
 		name: 'Isabelly',
 		url: 'https://www.instagram.com/isay.rm/',
 	},
+	{
+		role: 'Código de',
+		name: 'Gabriel',
+		url: 'https://www.instagram.com/molezinif/',
+	},
 ]
 
 type GalleryProps = {

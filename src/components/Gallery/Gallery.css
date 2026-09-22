@@ -127,7 +127,9 @@
 
 .gallery-footer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
+	text-align: center;
 	align-items: center;
 	gap: 16px;
 	padding: 8px 20px max(28px, env(safe-area-inset-bottom));
