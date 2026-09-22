@@ -1,6 +1,6 @@
 # Baralho Cigano
 
-As 36 cartas do baralho cigano numa grade, como um feed. Toque numa carta para abrir a página dela: uma vitrine 3D (gire com o mouse ou o dedo, veja a luz refletir na carta) e a wiki completa — significado, amor, trabalho, saúde e síntese.
+As 36 cartas do baralho cigano numa grade, como um feed. Toque numa carta para abrir a página dela: uma vitrine 3D (gire com o mouse ou o dedo, veja a luz refletir na carta) e a wiki completa, com significado, amor, trabalho, saúde e síntese.
 
 ![Grade de cartas e a página de uma carta aberta](docs/preview.png)
 
