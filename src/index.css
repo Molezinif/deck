@@ -12,6 +12,7 @@
 	--title-top: #fff8e8;
 	--shadow: rgb(0 0 0 / 0.4);
 	--halo: rgb(157 92 255 / 0.25);
+	--paint: rgb(110 60 190 / 0.5);
 	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 	--font-display: "Cormorant Garamond", Georgia, serif;
 	--font-body: Georgia, serif;
@@ -32,6 +33,7 @@
 	--title-top: #3b1f5e;
 	--shadow: rgb(74 45 20 / 0.2);
 	--halo: rgb(156 107 22 / 0.2);
+	--paint: rgb(240 196 110 / 0.45);
 	color-scheme: light;
 }
 
@@ -95,6 +97,25 @@ button:focus-visible {
 .theme-switching .gallery-card--active,
 .theme-switching .card-detail-slot {
 	view-transition-name: none;
+}
+
+.theme-painting body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 100;
+	background: var(--paint);
+	pointer-events: none;
+	animation: theme-paint 1400ms both;
+}
+
+@keyframes theme-paint {
+	60% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
 .theme-switching::view-transition-old(root) {

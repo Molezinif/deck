@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-120 -120 240 240">
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="-120 -120 240 240">
   <title>star</title>
-  <g>
-    <path d="M0 -118 L24 -24 L118 0 L24 24 L0 118 L-24 24 L-118 0 L-24 -24 Z"/>
-    <path d="M0 -118 L24 -24 L118 0 L24 24 L0 118 L-24 24 L-118 0 L-24 -24 Z" transform="rotate(45) scale(0.62)"/>
-    <circle r="34"/>
-    <animateTransform attributeName="transform" type="rotate" from="0" to="135" dur="1.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
-  </g>
+  <path d="M0 -118 L24 -24 L118 0 L24 24 L0 118 L-24 24 L-118 0 L-24 -24 Z"/>
+  <path d="M0 -118 L24 -24 L118 0 L24 24 L0 118 L-24 24 L-118 0 L-24 -24 Z" transform="rotate(45) scale(0.62)"/>
+  <circle r="34"/>
 </svg>

@@ -34,8 +34,13 @@ export function toggleTheme() {
 	const root = document.documentElement
 	root.classList.add('theme-switching')
 	document
-		.startViewTransition(() => flushSync(() => applyTheme(next)))
-		.finished.finally(() => root.classList.remove('theme-switching'))
+		.startViewTransition(() => {
+			root.classList.add('theme-painting')
+			flushSync(() => applyTheme(next))
+		})
+		.finished.finally(() =>
+			root.classList.remove('theme-switching', 'theme-painting'),
+		)
 }
 
 export const useTheme = () => useSyncExternalStore(subscribe, getTheme)
