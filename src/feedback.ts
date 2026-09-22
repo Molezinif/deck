@@ -15,7 +15,6 @@ const soundsPath = `${import.meta.env.BASE_URL}sounds`
 const buffers = new Map<string, Promise<AudioBuffer>>()
 const listeners = new Set<() => void>()
 let context: AudioContext | undefined
-let iosSwitch: HTMLLabelElement | undefined
 
 export function isSoundOn() {
 	try {
@@ -72,25 +71,10 @@ export function play(sound: Sound, volume = 1) {
 		.catch(() => {})
 }
 
-// iOS Safari has no Vibration API, but since iOS 18 toggling a native
-// switch fires the system haptic, and clicking its label counts as that.
-function iosHaptic() {
-	if (!matchMedia?.('(pointer: coarse)').matches) return
-	if (!iosSwitch) {
-		iosSwitch = document.createElement('label')
-		const input = document.createElement('input')
-		input.type = 'checkbox'
-		input.setAttribute('switch', '')
-		iosSwitch.append(input)
-		iosSwitch.style.display = 'none'
-		document.body.append(iosSwitch)
-	}
-	iosSwitch.click()
-}
-
+// iOS Safari has no Vibration API and closed the native switch workaround
+// in iOS 26.5, so haptics only reach browsers that implement vibrate.
 export function haptic(kind: keyof typeof VIBRATION_MS = 'tap') {
 	if ('vibrate' in navigator) navigator.vibrate(VIBRATION_MS[kind])
-	else iosHaptic()
 }
 
 export function feedback(sound: Sound, volume?: number) {
