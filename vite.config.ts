@@ -2,6 +2,9 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+	// Set by the GitHub Pages workflow to "/deck/"; local dev, preview and
+	// tests keep serving from the root.
+	base: process.env.VITE_BASE_PATH ?? '/',
 	plugins: [react()],
 	test: {
 		environment: 'jsdom',

@@ -1,7 +1,7 @@
 import { useTexture } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import type { CardData } from '../../data/cards.ts'
+import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
 import { Card, type Pose } from '../Card/Card.tsx'
 import { BACKGROUND, SceneLighting } from '../SceneLighting/SceneLighting.tsx'
 
@@ -38,7 +38,7 @@ export function CardShowcaseScene({ card }: CardShowcaseProps) {
 }
 
 function CardMesh({ card }: { card: CardData }) {
-	const [front, back] = useTexture([card.front, '/cards/back.svg'])
+	const [front, back] = useTexture([card.front, BACK_IMAGE])
 	return (
 		<Card front={front} back={back} pose={POSE} focused onSelect={() => {}} />
 	)
