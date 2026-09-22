@@ -14,5 +14,7 @@
 	"credit_art": "Arte de",
 	"credit_words": "Textos de",
 	"credit_code": "Código de",
-	"language": "Idioma"
+	"language": "Idioma",
+	"switch_to_light": "Mudar para o tema claro",
+	"switch_to_dark": "Mudar para o tema escuro"
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { flushSync } from 'react-dom'
 import { CardDetail } from './components/CardDetail/CardDetail.tsx'
 import { Gallery } from './components/Gallery/Gallery.tsx'
+import { Toolbar } from './components/Toolbar/Toolbar.tsx'
 import { DECKS } from './data/cards.ts'
 import { getLocale } from './paraglide/runtime.js'
 import { withViewTransition } from './viewTransition.ts'
@@ -27,6 +28,7 @@ export function App() {
 
 	return (
 		<>
+			<Toolbar />
 			<Gallery
 				cards={cards}
 				activeId={selectedId === null ? returnId : null}

@@ -7,12 +7,6 @@ import {
 } from 'react'
 import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
 import { m } from '../../paraglide/messages.js'
-import {
-	getLocale,
-	type Locale,
-	locales,
-	setLocale,
-} from '../../paraglide/runtime.js'
 import './Gallery.css'
 
 const MAX_TILT_DEG = 10
@@ -35,10 +29,6 @@ const CREDITS = [
 		url: 'https://www.instagram.com/molezinif/',
 	},
 ]
-const LANGUAGE_NAMES: Record<Locale, string> = {
-	en: 'English',
-	pt: 'Português',
-}
 
 type GalleryProps = {
 	cards: CardData[]
@@ -119,21 +109,6 @@ export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
 						</span>
 					))}
 				</p>
-				<fieldset className="gallery-languages">
-					<legend>{m.language()}</legend>
-					{locales.map((locale) => (
-						<button
-							key={locale}
-							type="button"
-							lang={locale}
-							aria-label={LANGUAGE_NAMES[locale]}
-							aria-pressed={getLocale() === locale}
-							onClick={() => setLocale(locale)}
-						>
-							{locale.toUpperCase()}
-						</button>
-					))}
-				</fieldset>
 				<div className="gallery-links">
 					<a
 						href={GITHUB_URL}

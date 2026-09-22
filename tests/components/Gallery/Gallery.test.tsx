@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { Gallery } from '../../../src/components/Gallery/Gallery.tsx'
 import { CARDS } from '../../../src/data/cards.ts'
-import { overwriteSetLocale } from '../../../src/paraglide/runtime.js'
 
 describe('Gallery', () => {
 	it('shows every card as a thumbnail', () => {
@@ -30,20 +29,5 @@ describe('Gallery', () => {
 		expect(link('Gabriel')).toBe('https://www.instagram.com/molezinif/')
 		expect(link('GitHub')).toBe('https://github.com/Molezinif/deck')
 		expect(link('Buy Me a Coffee')).toBe('https://buymeacoffee.com/molezinif')
-	})
-
-	it('switches the language from the footer', () => {
-		const setLocale = vi.fn()
-		overwriteSetLocale(setLocale)
-		render(<Gallery cards={CARDS} activeId={null} onSelect={() => {}} />)
-		const english = screen.getByRole('button', { name: 'English' })
-		expect(english.getAttribute('aria-pressed')).toBe('false')
-		expect(
-			screen
-				.getByRole('button', { name: 'Português' })
-				.getAttribute('aria-pressed'),
-		).toBe('true')
-		fireEvent.click(english)
-		expect(setLocale).toHaveBeenCalledWith('en')
 	})
 })

@@ -3,12 +3,36 @@
 	--gold: #f2d38a;
 	--violet: #c9a0ff;
 	--night: #14081f;
+	--glow-top: #2c1348;
+	--glow-bottom: #1f0c33;
 	--glass: rgb(20 8 31 / 0.55);
+	--veil: rgb(12 5 20 / 0.6);
+	--sheet: rgb(20 8 31 / 0.62);
 	--hairline: rgb(242 211 138 / 0.35);
+	--title-top: #fff8e8;
+	--shadow: rgb(0 0 0 / 0.4);
+	--halo: rgb(157 92 255 / 0.25);
 	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 	--font-display: "Cormorant Garamond", Georgia, serif;
 	--font-body: Georgia, serif;
 	color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+	--ink: #2b1742;
+	--gold: #9c6b16;
+	--violet: #6f3fae;
+	--night: #f5eee1;
+	--glow-top: #fffaf0;
+	--glow-bottom: #eadcc4;
+	--glass: rgb(255 251 243 / 0.7);
+	--veil: rgb(245 238 225 / 0.55);
+	--sheet: rgb(252 247 238 / 0.78);
+	--hairline: rgb(156 107 22 / 0.35);
+	--title-top: #3b1f5e;
+	--shadow: rgb(74 45 20 / 0.2);
+	--halo: rgb(156 107 22 / 0.2);
+	color-scheme: light;
 }
 
 html,
@@ -32,8 +56,8 @@ body {
 	font-family: var(--font-body);
 	color: var(--ink);
 	background:
-		radial-gradient(120% 70% at 50% -10%, #2c1348 0%, transparent 60%),
-		radial-gradient(90% 60% at 50% 115%, #1f0c33 0%, transparent 70%),
+		radial-gradient(120% 70% at 50% -10%, var(--glow-top) 0%, transparent 60%),
+		radial-gradient(90% 60% at 50% 115%, var(--glow-bottom) 0%, transparent 70%),
 		var(--night);
 }
 
@@ -64,6 +88,41 @@ button:focus-visible {
 ::view-transition-new(card) {
 	height: 100%;
 	object-fit: cover;
+}
+
+/* The named card elements would otherwise crossfade on their own, outside
+   the star that reveals the new theme. */
+.theme-switching .gallery-card--active,
+.theme-switching .card-detail-slot {
+	view-transition-name: none;
+}
+
+.theme-switching::view-transition-old(root) {
+	animation: none;
+}
+
+.theme-switching::view-transition-new(root) {
+	mask: url("./assets/theme-star.svg") center / 0 no-repeat;
+	-webkit-mask: url("./assets/theme-star.svg") center / 0 no-repeat;
+	animation: theme-reveal 1400ms both;
+}
+
+@keyframes theme-reveal {
+	0% {
+		mask-size: 0;
+		animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1.2);
+	}
+	25% {
+		mask-size: 30vmax;
+		animation-timing-function: ease-in-out;
+	}
+	65% {
+		mask-size: 36vmax;
+		animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+	}
+	100% {
+		mask-size: 900vmax;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

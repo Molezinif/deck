@@ -9,6 +9,7 @@ import {
 } from 'react'
 import { type Group, MathUtils, type PerspectiveCamera } from 'three'
 import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
+import { useTheme } from '../../theme.ts'
 import { Card, type Pose } from '../Card/Card.tsx'
 import { CARD_HEIGHT } from '../Card/geometry.ts'
 import { SceneLighting } from '../SceneLighting/SceneLighting.tsx'
@@ -22,6 +23,8 @@ const FRAMING_SPEED = 6
 const TILT_SPEED = 3
 const POINTER_TILT = { x: 0.08, y: 0.14 }
 const SHADOW_OFFSET = 0.1
+const DUST = { dark: '#f2d38a', light: '#b07a1c' }
+const SHADOW_OPACITY = { dark: 0.55, light: 0.25 }
 
 type CardShowcaseProps = {
 	card: CardData
@@ -52,6 +55,7 @@ export function CardShowcaseScene({
 	slot,
 }: CardShowcaseProps) {
 	const still = prefersReducedMotion()
+	const theme = useTheme()
 
 	useEffect(() => {
 		for (const front of upcoming) useTexture.preload([front, BACK_IMAGE])
@@ -67,14 +71,14 @@ export function CardShowcaseScene({
 				size={1.8}
 				speed={still ? 0 : 0.25}
 				opacity={0.7}
-				color="#f2d38a"
+				color={DUST[theme]}
 			/>
 			<ContactShadows
 				position={[0, -CARD_HEIGHT / 2 - SHADOW_OFFSET, 0]}
 				scale={1.4}
 				blur={2.4}
 				far={1}
-				opacity={0.55}
+				opacity={SHADOW_OPACITY[theme]}
 				resolution={256}
 			/>
 			<Float

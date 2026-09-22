@@ -1,11 +1,23 @@
 import { Environment, Lightformer } from '@react-three/drei'
+import { useTheme } from '../../theme.ts'
+
+const AMBIENT = {
+	dark: { color: '#d9c6ff', intensity: 0.6 },
+	light: { color: '#fff1dc', intensity: 1.1 },
+}
+const ACCENT = {
+	dark: { color: '#9d5cff', intensity: 6 },
+	light: { color: '#f2c77a', intensity: 3 },
+}
 
 export function SceneLighting() {
+	const theme = useTheme()
+
 	return (
 		<>
-			<ambientLight intensity={0.6} color="#d9c6ff" />
+			<ambientLight {...AMBIENT[theme]} />
 			<directionalLight position={[2, 5, 3]} intensity={1.6} />
-			<pointLight position={[0, 1.5, 0]} intensity={6} color="#9d5cff" />
+			<pointLight position={[0, 1.5, 0]} {...ACCENT[theme]} />
 			<Environment resolution={256} frames={1} environmentIntensity={0.6}>
 				<Lightformer
 					form="rect"

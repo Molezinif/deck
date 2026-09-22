@@ -20,7 +20,7 @@
 	font-weight: 600;
 	line-height: 1;
 	letter-spacing: -0.01em;
-	background: linear-gradient(180deg, #fff8e8 20%, var(--gold));
+	background: linear-gradient(180deg, var(--title-top) 20%, var(--gold));
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -36,13 +36,13 @@
 
 .card-content section {
 	padding: 18px 0;
-	border-top: 1px solid rgb(201 160 255 / 0.12);
+	border-top: 1px solid color-mix(in srgb, var(--violet) 14%, transparent);
 }
 
 .card-content section p {
 	margin: 0;
 	line-height: 1.6;
-	color: rgb(244 239 230 / 0.88);
+	color: color-mix(in srgb, var(--ink) 88%, transparent);
 }
 
 .card-content-keywords {
@@ -58,7 +58,7 @@
 	padding: 5px 12px;
 	border: 1px solid var(--hairline);
 	border-radius: 999px;
-	background: rgb(242 211 138 / 0.06);
+	background: color-mix(in srgb, var(--gold) 7%, transparent);
 	color: var(--gold);
 	font-size: 0.85rem;
 }

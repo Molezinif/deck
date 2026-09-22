@@ -1,0 +1,72 @@
+.toolbar {
+	position: fixed;
+	top: max(14px, env(safe-area-inset-top));
+	right: max(16px, env(safe-area-inset-right));
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px;
+	border: 1px solid var(--hairline);
+	border-radius: 999px;
+	background: var(--glass);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	animation: fade 500ms 300ms ease both;
+}
+
+.toolbar-languages {
+	display: flex;
+	gap: 2px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.toolbar-languages legend {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.toolbar button {
+	border: 0;
+	border-radius: 999px;
+	background: none;
+	color: color-mix(in srgb, var(--ink) 70%, transparent);
+	font: inherit;
+	cursor: pointer;
+	transition:
+		color 200ms,
+		background 200ms,
+		transform 200ms var(--ease-out);
+}
+
+.toolbar-languages button {
+	padding: 6px 10px;
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+}
+
+.toolbar button:hover {
+	color: var(--gold);
+}
+
+.toolbar button:active {
+	transform: scale(0.94);
+}
+
+.toolbar-languages button[aria-pressed="true"] {
+	background: color-mix(in srgb, var(--gold) 16%, transparent);
+	color: var(--gold);
+}
+
+.toolbar-theme {
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+}
