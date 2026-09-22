@@ -62,17 +62,17 @@ describe('App', () => {
 		click('carta 23')
 		click('fechar detalhe')
 		await waitFor(() => expect(detail()).toBeNull())
-		expect(location.hash).toBe('')
+		expect(location.pathname).toBe('/')
 	})
 
 	it('gives each open card its own address', () => {
 		render(<App />)
 		click('carta 23')
-		expect(location.hash).toBe('#/rato')
+		expect(location.pathname).toBe('/rato/')
 	})
 
 	it('opens the card in the address', () => {
-		history.replaceState(null, '', '/#/coracao')
+		history.replaceState(null, '', '/coracao/')
 		render(<App />)
 		expect(detail()?.textContent).toBe('Coração')
 	})
@@ -85,11 +85,11 @@ describe('App', () => {
 	})
 
 	it('closes a card opened from a link without leaving the site', () => {
-		history.replaceState(null, '', '/#/coracao')
+		history.replaceState(null, '', '/coracao/')
 		render(<App />)
 		click('fechar detalhe')
 		expect(detail()).toBeNull()
-		expect(location.hash).toBe('')
+		expect(location.pathname).toBe('/')
 	})
 
 	it('defaults to Portuguese whatever the browser language', () => {

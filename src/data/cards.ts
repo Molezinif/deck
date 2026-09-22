@@ -1,6 +1,7 @@
 import type { Locale } from '../paraglide/runtime.js'
 import english from './cards.en.json'
 import entries from './cards.json'
+import { slugify } from './slugify.ts'
 
 export type CardData = (typeof entries)[number] & {
 	id: number
@@ -26,13 +27,6 @@ function parsePlayingCard(playingCard: string) {
 	const [rank, suit] = playingCard.split(' de ')
 	return { suit: SUIT_NAMES[suit], rank: RANKS.indexOf(rank) }
 }
-
-const slugify = (name: string) =>
-	name
-		.normalize('NFD')
-		.replace(/\p{Diacritic}/gu, '')
-		.toLowerCase()
-		.replace(/\s+/g, '-')
 
 // import.meta.env.BASE_URL always ends in "/"; prefixing with it keeps
 // these public/ paths correct whether the app is served at the domain

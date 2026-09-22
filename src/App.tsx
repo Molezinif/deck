@@ -2,27 +2,21 @@ import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { CardDetail } from './components/CardDetail/CardDetail.tsx'
 import { Gallery } from './components/Gallery/Gallery.tsx'
-import { CARDS, DECKS } from './data/cards.ts'
+import { DECKS } from './data/cards.ts'
 import { feedback } from './feedback.ts'
 import { getLocale } from './paraglide/runtime.js'
+import { cardIdFromLocation, cardPath, homePath } from './routes.ts'
 import { withViewTransition } from './viewTransition.ts'
-
-const hashOf = (id: number) => `#/${CARDS.find((card) => card.id === id)?.slug}`
-
-const idFromHash = () =>
-	CARDS.find((card) => `#/${card.slug}` === location.hash)?.id ?? null
-
-const withoutHash = () => location.pathname + location.search
 
 export function App() {
 	const cards = DECKS[getLocale()]
-	const [selectedId, setSelectedId] = useState(idFromHash)
-	const [returnId, setReturnId] = useState(idFromHash)
+	const [selectedId, setSelectedId] = useState(cardIdFromLocation)
+	const [returnId, setReturnId] = useState(cardIdFromLocation)
 	const index = cards.findIndex((card) => card.id === selectedId)
 
 	useEffect(() => {
 		const syncWithUrl = () => {
-			const id = idFromHash()
+			const id = cardIdFromLocation()
 			feedback(id === null ? 'settle' : 'flip', id === null ? 0.6 : 1)
 			if (id !== null) flushSync(() => setReturnId(id))
 			withViewTransition(() => setSelectedId(id))
@@ -35,14 +29,14 @@ export function App() {
 		feedback('flip')
 		flushSync(() => setReturnId(id))
 		withViewTransition(() => {
-			history.pushState({ opened: true }, '', hashOf(id))
+			history.pushState({ opened: true }, '', cardPath(id))
 			setSelectedId(id)
 		})
 	}
 
 	const navigate = (id: number) => {
 		feedback('flip', 0.8)
-		history.replaceState(history.state, '', hashOf(id))
+		history.replaceState(history.state, '', cardPath(id))
 		setReturnId(id)
 		setSelectedId(id)
 	}
@@ -55,7 +49,7 @@ export function App() {
 			return
 		}
 		feedback('settle', 0.6)
-		history.replaceState(null, '', withoutHash())
+		history.replaceState(null, '', homePath())
 		withViewTransition(() => setSelectedId(null))
 	}
 

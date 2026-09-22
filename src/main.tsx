@@ -4,7 +4,9 @@ import './index.css'
 import { App } from './App.tsx'
 import { m } from './paraglide/messages.js'
 import { getLocale } from './paraglide/runtime.js'
+import { upgradeLegacyHash } from './routes.ts'
 
+upgradeLegacyHash()
 document.documentElement.lang = getLocale()
 document.title = m.title()
 

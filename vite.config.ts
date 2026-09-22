@@ -1,13 +1,17 @@
 import { paraglideVitePlugin } from '@inlang/paraglide-js'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
+import { cardPages } from './scripts/cardPages.ts'
+
+// Set by the GitHub Pages workflow to "/deck/"; local dev, preview and
+// tests keep serving from the root.
+const base = process.env.VITE_BASE_PATH ?? '/'
 
 export default defineConfig({
-	// Set by the GitHub Pages workflow to "/deck/"; local dev, preview and
-	// tests keep serving from the root.
-	base: process.env.VITE_BASE_PATH ?? '/',
+	base,
 	plugins: [
 		react(),
+		cardPages(`https://molezinif.github.io${base}`),
 		paraglideVitePlugin({
 			project: './project.inlang',
 			outdir: './src/paraglide',
