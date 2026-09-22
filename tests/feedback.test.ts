@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { haptic } from '../src/feedback.ts'
+import { feedback, haptic } from '../src/feedback.ts'
 
 describe('haptic', () => {
 	afterEach(() => {
@@ -15,5 +15,16 @@ describe('haptic', () => {
 		haptic()
 		haptic('tick')
 		expect(vibrate.mock.calls).toEqual([[10], [4]])
+	})
+
+	it('keeps the haptic when the sound is muted', () => {
+		const vibrate = vi.fn()
+		Object.defineProperty(navigator, 'vibrate', {
+			value: vibrate,
+			configurable: true,
+		})
+		localStorage.setItem('deck-sound', 'off')
+		feedback('flip')
+		expect(vibrate).toHaveBeenCalledWith(10)
 	})
 })
