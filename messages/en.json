@@ -1,0 +1,18 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"title": "Baralho Cigano · Lenormand",
+	"close": "Close",
+	"expand_card": "Expand card",
+	"collapse_card": "Collapse card",
+	"previous_card": "Previous card: {name}",
+	"next_card": "Next card: {name}",
+	"section_meaning": "Meaning",
+	"section_love": "Love",
+	"section_work": "Work",
+	"section_health": "Health",
+	"section_synthesis": "Synthesis",
+	"credit_art": "Art by",
+	"credit_words": "Words by",
+	"credit_code": "Code by",
+	"language": "Language"
+}

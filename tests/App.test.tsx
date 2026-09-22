@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from '../src/App.tsx'
-import { CARDS } from '../src/data/cards.ts'
+import { CARDS, CARDS_EN } from '../src/data/cards.ts'
+import { localStorageKey } from '../src/paraglide/runtime.js'
 
 vi.mock('../src/components/Gallery/Gallery.tsx', () => ({
 	Gallery: ({ onSelect }: { onSelect: (id: number) => void }) => (
@@ -61,5 +62,12 @@ describe('App', () => {
 		click('carta 23')
 		click('fechar detalhe')
 		expect(detail()).toBeNull()
+	})
+
+	it('shows the English deck when the locale is English', () => {
+		localStorage.setItem(localStorageKey, 'en')
+		render(<App />)
+		click('carta 23')
+		expect(detail()?.textContent).toBe(CARDS_EN[22].name)
 	})
 })

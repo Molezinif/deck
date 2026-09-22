@@ -1,3 +1,5 @@
+import type { Locale } from '../paraglide/runtime.js'
+import english from './cards.en.json'
 import entries from './cards.json'
 
 export type CardData = (typeof entries)[number] & {
@@ -22,3 +24,10 @@ export const CARDS: CardData[] = entries.map((entry, i) => {
 		thumbnail: entry.image ? `${cardsPath}/thumbs/${entry.image}` : placeholder,
 	}
 })
+
+export const CARDS_EN: CardData[] = CARDS.map((card, i) => ({
+	...card,
+	...english[i],
+}))
+
+export const DECKS: Record<Locale, CardData[]> = { pt: CARDS, en: CARDS_EN }

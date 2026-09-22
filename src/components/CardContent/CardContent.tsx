@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { CardData } from '../../data/cards.ts'
+import { m } from '../../paraglide/messages.js'
 import './CardContent.css'
 
 type CardContentProps = {
@@ -10,11 +11,11 @@ const stagger = (order: number) => ({ '--order': order }) as CSSProperties
 
 export function CardContent({ card }: CardContentProps) {
 	const sections = [
-		{ title: 'Significado', text: card.meaning },
-		{ title: 'Amor', text: card.love },
-		{ title: 'Trabalho', text: card.work },
-		{ title: 'Saúde', text: card.health },
-		{ title: 'Síntese', text: card.synthesis.join(' · ') },
+		{ title: m.section_meaning(), text: card.meaning },
+		{ title: m.section_love(), text: card.love },
+		{ title: m.section_work(), text: card.work },
+		{ title: m.section_health(), text: card.health },
+		{ title: m.section_synthesis(), text: card.synthesis.join(' · ') },
 	]
 
 	return (

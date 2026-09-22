@@ -6,24 +6,39 @@ import {
 	useRef,
 } from 'react'
 import { BACK_IMAGE, type CardData } from '../../data/cards.ts'
+import { m } from '../../paraglide/messages.js'
+import {
+	getLocale,
+	type Locale,
+	locales,
+	setLocale,
+} from '../../paraglide/runtime.js'
 import './Gallery.css'
 
 const MAX_TILT_DEG = 10
 const GITHUB_URL = 'https://github.com/Molezinif/deck'
 const COFFEE_URL = 'https://buymeacoffee.com/molezinif'
 const CREDITS = [
-	{ role: 'Arte de', name: 'Luiddy', url: 'https://www.instagram.com/luiddx/' },
 	{
-		role: 'Textos de',
+		role: m.credit_art,
+		name: 'Luiddy',
+		url: 'https://www.instagram.com/luiddx/',
+	},
+	{
+		role: m.credit_words,
 		name: 'Isabelly',
 		url: 'https://www.instagram.com/isay.rm/',
 	},
 	{
-		role: 'Código de',
+		role: m.credit_code,
 		name: 'Gabriel',
 		url: 'https://www.instagram.com/molezinif/',
 	},
 ]
+const LANGUAGE_NAMES: Record<Locale, string> = {
+	en: 'English',
+	pt: 'Português',
+}
 
 type GalleryProps = {
 	cards: CardData[]
@@ -97,13 +112,28 @@ export function Gallery({ cards, activeId, onSelect }: GalleryProps) {
 					{CREDITS.map((credit, i) => (
 						<span key={credit.name}>
 							{i > 0 && ' · '}
-							{credit.role}{' '}
+							{credit.role()}{' '}
 							<a href={credit.url} target="_blank" rel="noreferrer">
 								{credit.name}
 							</a>
 						</span>
 					))}
 				</p>
+				<fieldset className="gallery-languages">
+					<legend>{m.language()}</legend>
+					{locales.map((locale) => (
+						<button
+							key={locale}
+							type="button"
+							lang={locale}
+							aria-label={LANGUAGE_NAMES[locale]}
+							aria-pressed={getLocale() === locale}
+							onClick={() => setLocale(locale)}
+						>
+							{locale.toUpperCase()}
+						</button>
+					))}
+				</fieldset>
 				<div className="gallery-links">
 					<a
 						href={GITHUB_URL}

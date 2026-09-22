@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import type { CardData } from '../../data/cards.ts'
+import { m } from '../../paraglide/messages.js'
 import { useKeyDown } from '../../useKeyDown.ts'
 import { CardContent } from '../CardContent/CardContent.tsx'
 import { CardShowcase } from '../CardShowcase/CardShowcase.tsx'
@@ -56,7 +57,7 @@ export function CardDetail({
 				type="button"
 				className="card-detail-button card-detail-close"
 				onClick={onClose}
-				aria-label="Fechar"
+				aria-label={m.close()}
 			>
 				×
 			</button>
@@ -68,7 +69,7 @@ export function CardDetail({
 							type="button"
 							className="card-detail-button"
 							onClick={goPrevious}
-							aria-label={`Carta anterior: ${previous.name}`}
+							aria-label={m.previous_card({ name: previous.name })}
 						>
 							‹
 						</button>
@@ -78,13 +79,13 @@ export function CardDetail({
 							onClick={() => setExpanded((current) => !current)}
 							aria-pressed={expanded}
 						>
-							{expanded ? 'Recolher carta' : 'Expandir carta'}
+							{expanded ? m.collapse_card() : m.expand_card()}
 						</button>
 						<button
 							type="button"
 							className="card-detail-button"
 							onClick={goNext}
-							aria-label={`Próxima carta: ${next.name}`}
+							aria-label={m.next_card({ name: next.name })}
 						>
 							›
 						</button>

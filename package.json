@@ -9,9 +9,10 @@
 		"lint": "biome check",
 		"preview": "vite preview",
 		"format": "biome check --write",
-		"prepare": "lefthook install",
+		"prepare": "lefthook install && pnpm i18n",
 		"test": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --strategy localStorage preferredLanguage baseLocale --emit-ts-declarations"
 	},
 	"dependencies": {
 		"@react-three/drei": "^10.7.8",
@@ -24,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.14",
+		"@inlang/paraglide-js": "^2.25.4",
 		"@react-three/test-renderer": "^9.1.1",
 		"@testing-library/react": "^16.3.3",
 		"@types/node": "^24.13.3",

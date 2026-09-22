@@ -1,0 +1,18 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"title": "Baralho Cigano",
+	"close": "Fechar",
+	"expand_card": "Expandir carta",
+	"collapse_card": "Recolher carta",
+	"previous_card": "Carta anterior: {name}",
+	"next_card": "Próxima carta: {name}",
+	"section_meaning": "Significado",
+	"section_love": "Amor",
+	"section_work": "Trabalho",
+	"section_health": "Saúde",
+	"section_synthesis": "Síntese",
+	"credit_art": "Arte de",
+	"credit_words": "Textos de",
+	"credit_code": "Código de",
+	"language": "Idioma"
+}

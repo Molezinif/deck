@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CARDS } from '../../src/data/cards.ts'
+import { CARDS, CARDS_EN } from '../../src/data/cards.ts'
 
 const publicImages = Object.keys(
 	import.meta.glob(['../../public/cards/*', '../../public/cards/thumbs/*']),
@@ -62,5 +62,20 @@ describe('CARDS', () => {
 
 	it('maps each card to a different playing card', () => {
 		expect(new Set(CARDS.map((card) => card.playingCard)).size).toBe(36)
+	})
+})
+
+describe('CARDS_EN', () => {
+	it('translates every card and keeps the artwork', () => {
+		expect(CARDS_EN).toHaveLength(CARDS.length)
+		CARDS_EN.forEach((card, i) => {
+			expect(card.id).toBe(CARDS[i].id)
+			expect(card.front).toBe(CARDS[i].front)
+			expect(card.name).not.toBe('')
+			expect(card.meaning).not.toBe(CARDS[i].meaning)
+			expect(card.keywords.length).toBeGreaterThan(0)
+			expect(card.synthesis.length).toBeGreaterThan(0)
+		})
+		expect(new Set(CARDS_EN.map((card) => card.name)).size).toBe(36)
 	})
 })

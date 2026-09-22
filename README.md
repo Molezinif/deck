@@ -1,103 +1,111 @@
 # Baralho Cigano
 
-As 36 cartas do baralho cigano numa grade, como um feed. Toque numa carta para abrir a página dela: uma vitrine 3D (gire com o mouse ou o dedo, veja a luz refletir na carta) e a wiki completa, com significado, amor, trabalho, saúde e síntese.
+The 36 cards of the Baralho Cigano (the Brazilian name for the Lenormand deck) in a scrollable grid. Tap a card to open its page: a 3D card you can spin with the mouse or a finger, catching the light as it turns, next to its full reading, with meaning, love, work, health and synthesis. Available in English and Portuguese.
 
-![Grade de cartas e a página de uma carta aberta](docs/preview.png)
+![The card grid and an open card page](docs/preview.png)
 
-## Recursos
+## Features
 
-- Grade responsiva com as 36 cartas. As cartas entram em cascata e, no desktop, se inclinam em 3D seguindo o mouse, com um brilho que acompanha o ponteiro.
-- Ao abrir uma carta, a miniatura voa até o centro da página (View Transitions) e a carta 3D chega de costas e vira, como numa tiragem. Ao fechar, ela volta para o lugar dela na grade.
-- Página da carta: a carta flutua sobre a grade desfocada, com poeira dourada e sombra. Ela se inclina de leve na direção do mouse e gira ao arrastar. Ao soltar, assenta na face mais próxima, frente ou verso, e um giro rápido mantém o embalo.
-- As setas ‹ › e as teclas ← → passam para a carta anterior ou a próxima.
-- O botão de expandir aumenta a carta. No desktop e em paisagem, a carta fica ao lado do texto; no celular em pé, o texto sobe como uma folha por cima da carta.
-- Fecha com o botão ×, com Esc, ou recolhendo a carta expandida.
-- Com "reduzir movimento" ligado no sistema, as animações viram só transições de opacidade.
+- A responsive grid of the 36 cards. Cards cascade in on load and, on desktop, tilt in 3D toward the pointer with a glare that follows it.
+- Opening a card morphs its thumbnail into the page (View Transitions), and the 3D card arrives face down and turns over, the way a card is revealed in a reading. Closing sends it back to its spot in the grid.
+- Card page: the card floats over the blurred grid, among golden dust, with a soft shadow. It leans slightly toward the pointer and spins when dragged. On release it settles on the nearest face, front or back, and a quick flick keeps its momentum.
+- The ‹ › buttons and the ← → keys move to the previous or next card.
+- The expand button enlarges the card. On desktop and in landscape the card sits next to the text; on portrait phones the text rises as a sheet over the card.
+- Close with the × button, with Esc, or by collapsing the expanded card.
+- English and Portuguese, picked from the browser language and switchable in the footer. The choice is remembered.
+- With "reduce motion" turned on in the system, animations become simple fades.
 
 ## Stack
 
-| Área | Ferramentas |
+| Area | Tools |
 | --- | --- |
 | App | React 19, TypeScript, Vite |
 | 3D | three.js, React Three Fiber, drei |
-| Testes | Vitest, Testing Library, React Three Test Renderer |
-| Qualidade | Biome (lint e formatação), Lefthook (git hooks) |
+| i18n | Paraglide JS |
+| Tests | Vitest, Testing Library, React Three Test Renderer |
+| Quality | Biome (lint and formatting), Lefthook (git hooks) |
 
-## Começando
+## Getting started
 
-Requisitos: Node.js 20.19+ ou 22.12+ e pnpm.
+Requirements: Node.js 20.19+ or 22.12+ and pnpm.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-O `pnpm install` também instala os git hooks.
+`pnpm install` also installs the git hooks and compiles the translations.
 
-## Comandos
+## Commands
 
-| Comando | O que faz |
+| Command | What it does |
 | --- | --- |
-| `pnpm dev` | Sobe o app em modo de desenvolvimento |
-| `pnpm build` | Checa os tipos e gera o build de produção em `dist/` |
-| `pnpm preview` | Serve o build de produção localmente |
-| `pnpm test` | Roda os testes uma vez |
-| `pnpm test:watch` | Roda os testes em modo watch |
-| `pnpm lint` | Checa lint e formatação |
-| `pnpm format` | Corrige lint e formatação |
+| `pnpm dev` | Starts the app in development mode |
+| `pnpm build` | Type checks and builds for production into `dist/` |
+| `pnpm preview` | Serves the production build locally |
+| `pnpm test` | Runs the tests once |
+| `pnpm test:watch` | Runs the tests in watch mode |
+| `pnpm lint` | Checks lint and formatting |
+| `pnpm format` | Fixes lint and formatting |
+| `pnpm i18n` | Compiles the translations into `src/paraglide/` |
 
-A cada commit, o Lefthook roda o Biome nos arquivos em stage, a checagem de tipos e os testes.
+On every commit, Lefthook runs Biome on the staged files, the type check and the tests. Every push to `main` is checked by CI and deployed to GitHub Pages.
 
-## Estrutura
+## Structure
 
 ```
-public/cards/            artes das cartas e o verso (back.svg)
-public/cards/thumbs/     miniaturas das artes, usadas na grade
+public/cards/            card artwork and the back (back.svg)
+public/cards/thumbs/     artwork thumbnails, used in the grid
+messages/                interface texts, one file per language
+project.inlang/          Paraglide settings: languages and message files
 src/
-  App.tsx                estado da carta selecionada
+  App.tsx                which card is open
+  main.tsx               sets the page language and title
   data/
-    cards.json           conteúdo da wiki, na ordem do baralho
-    cards.ts             junta o conteúdo com id e caminho da imagem
-  useKeyDown.ts           atalhos de teclado (Esc, ← →)
-  viewTransition.ts       anima a troca entre a grade e a carta, quando o navegador suporta
+    cards.json           card contents in Portuguese, in deck order
+    cards.en.json        the same contents in English
+    cards.ts             joins contents with id and artwork paths, per language
+  paraglide/             generated by Paraglide (not committed)
+  useKeyDown.ts          keyboard shortcuts (Esc, ← →)
+  viewTransition.ts      animates between the grid and a card, when the browser supports it
   components/
-    Gallery/              a grade de cartas
-    CardDetail/            a página de uma carta: carta 3D, navegação, expandir e conteúdo
-    CardShowcase/          o canvas 3D em tela cheia, enquadrado no espaço que o layout reserva para a carta
-    CardContent/           nome, palavras-chave e as seções da wiki (usado só por CardDetail)
+    Gallery/             the card grid and the footer
+    CardDetail/          a card's page: 3D card, navigation, expand and contents
+    CardShowcase/        the full screen 3D canvas, framed on the space the layout reserves for the card
+    CardContent/         name, keywords and reading sections
     Card/
-      Card.tsx             a carta 3D: formato, material, arraste, giro
-      geometry.ts          formato da carta e proporção das artes
-    SceneLighting/          luzes e reflexos, compartilhados pelas cenas 3D
-tests/                    espelha a estrutura de src/
-docs/                     imagens do README
+      Card.tsx           the 3D card: shape, material, drag, spin
+      geometry.ts        card shape and artwork ratio
+    SceneLighting/       lights and reflections of the 3D scene
+tests/                   mirrors the structure of src/
+docs/                    README images
 ```
 
-Cada componente fica na sua própria pasta, com o seu teste no mesmo caminho dentro de `tests/`. O estado fica no `App`: a carta aberta e a carta para onde a animação volta ao fechar.
+Each component lives in its own folder, with its test at the same path under `tests/`. State lives in `App`: the open card and the card the animation returns to on close.
 
-## Personalizando o baralho
+## Customizing the deck
 
-### Imagens
+### Images
 
-Coloque as artes em `public/cards/` e aponte cada carta para o seu arquivo com o campo `image` em `src/data/cards.json`:
+Put the artwork in `public/cards/` and point each card to its file with the `image` field in `src/data/cards.json`:
 
 ```json
 { "image": "cavaleiro1.webp", "name": "Cavaleiro", … }
 ```
 
-Uma carta sem `image` usa a imagem provisória `NN.svg` (01 Cavaleiro … 36 Cruz). O verso é o `public/cards/back.svg`, referenciado em `src/components/CardShowcase/CardShowcase.tsx`.
+A card without `image` uses the placeholder `NN.svg` (01 to 36). The back is `public/cards/back.svg`, set as `BACK_IMAGE` in `src/data/cards.ts`.
 
-A grade usa uma miniatura de cada arte, com o mesmo nome, em `public/cards/thumbs/`. A arte original só é baixada quando a carta abre. Para gerar as miniaturas:
+The grid uses a thumbnail of each artwork, with the same file name, in `public/cards/thumbs/`. The full artwork is only downloaded when the card opens. To generate the thumbnails:
 
 ```bash
 for f in public/cards/*.webp; do cwebp -q 80 -resize 360 0 "$f" -o "public/cards/thumbs/$(basename "$f")"; done
 ```
 
-A carta 3D segue a proporção das artes, 791×1169. Se as suas artes tiverem outra proporção, ajuste `ARTWORK_ASPECT` em `src/components/Card/geometry.ts` e o `aspect-ratio` nos CSS da grade e da página da carta.
+The 3D card follows the artwork ratio, 791×1169. If your artwork has another ratio, change `ARTWORK_ASPECT` in `src/components/Card/geometry.ts` and the `aspect-ratio` in the grid and card page CSS.
 
-### Conteúdo
+### Contents
 
-Edite `src/data/cards.json`. Cada entrada tem:
+Edit `src/data/cards.json` for Portuguese and `src/data/cards.en.json` for English. Both list the cards in the same order. Each Portuguese entry has:
 
 ```json
 {
@@ -113,32 +121,38 @@ Edite `src/data/cards.json`. Cada entrada tem:
 }
 ```
 
-O tipo `CardData` é inferido do JSON, então um campo novo já fica disponível no TypeScript. Para mostrá-lo, é só editar `src/components/CardContent/CardContent.tsx`.
+English entries have the same fields except `image`, which comes from the Portuguese file. The `CardData` type is inferred from the JSON, so a new field is available in TypeScript right away. To show it, edit `src/components/CardContent/CardContent.tsx`.
 
-### Ajustes finos
+### Languages
 
-As constantes ficam no topo de cada arquivo:
+Interface texts live in `messages/en.json` and `messages/pt.json` and are used in code as typed functions, like `m.close()`. After editing them, `pnpm dev` picks the change up on its own.
 
-| O quê | Onde |
+To add a language, add its code to `locales` in `project.inlang/settings.json`, create `messages/<code>.json`, write a `src/data/cards.<code>.json` and register it in `DECKS` in `src/data/cards.ts`. English is the fallback for browsers in a language the site doesn't have.
+
+### Fine tuning
+
+Constants sit at the top of each file:
+
+| What | Where |
 | --- | --- |
-| Velocidade da animação, sensibilidade do arraste, inclinação máxima, embalo do giro (`FLICK_MOMENTUM`), acabamento da carta (`FINISH`) e cor da borda (`EDGE_COLOR`) | `src/components/Card/Card.tsx` |
-| Entrada da carta, flutuação, inclinação pelo mouse, poeira e sombra | `src/components/CardShowcase/CardShowcase.tsx` |
-| Cores, fontes e curva das animações | `src/index.css` |
-| Proporção, tamanho e raio dos cantos | `src/components/Card/geometry.ts` |
-| Colunas, tamanho mínimo e inclinação da grade (`MAX_TILT_DEG`) | `src/components/Gallery/Gallery.css`, `src/components/Gallery/Gallery.tsx` |
-| Tamanho da carta na página, desfoque do fundo e ponto de quebra do layout lado a lado | `src/components/CardDetail/CardDetail.css` |
-| Cores, luzes e reflexos que a carta reflete | `src/components/SceneLighting/SceneLighting.tsx` |
+| Animation speed, drag sensitivity, max tilt, flick momentum (`FLICK_MOMENTUM`), card finish (`FINISH`) and edge color (`EDGE_COLOR`) | `src/components/Card/Card.tsx` |
+| Card entrance, floating, pointer tilt, dust and shadow | `src/components/CardShowcase/CardShowcase.tsx` |
+| Colors, fonts and animation easing | `src/index.css` |
+| Card ratio, size and corner radius | `src/components/Card/geometry.ts` |
+| Grid columns, minimum size and tilt (`MAX_TILT_DEG`) | `src/components/Gallery/Gallery.css`, `src/components/Gallery/Gallery.tsx` |
+| Card size on its page, background blur and the side by side breakpoint | `src/components/CardDetail/CardDetail.css` |
+| Lights and reflections on the card | `src/components/SceneLighting/SceneLighting.tsx` |
 
-## Testes
+## Tests
 
-Os componentes 3D são testados com o React Three Test Renderer, que monta a cena sem WebGL e permite disparar eventos e avançar quadros. Os componentes HTML usam o Testing Library com jsdom.
+The 3D components are tested with React Three Test Renderer, which mounts the scene without WebGL and lets tests fire events and advance frames. HTML components use Testing Library with jsdom. Tests run in Portuguese by default (see `tests/setup.ts`).
 
-## Créditos
+## Credits
 
-- Arte das cartas: [Luiddy](https://www.instagram.com/luiddx/)
-- Textos das cartas: [Isabelly](https://www.instagram.com/isay.rm/)
-- Código: [Gabriel](https://www.instagram.com/molezinif/)
+- Card artwork: [Luiddy](https://www.instagram.com/luiddx/)
+- Card texts: [Isabelly](https://www.instagram.com/isay.rm/)
+- Code: [Gabriel](https://www.instagram.com/molezinif/)
 
-## Licença
+## License
 
-Todos os direitos reservados. Veja [LICENSE](LICENSE).
+All rights reserved. See [LICENSE](LICENSE).

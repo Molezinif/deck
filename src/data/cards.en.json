@@ -1,0 +1,362 @@
+[
+	{
+		"name": "Rider",
+		"playingCard": "9 of hearts",
+		"keywords": ["news", "speed", "message"],
+		"meaning": "News arrives quickly. An important message is on its way. Movement and momentum define the moment.",
+		"love": "A suitor or admirer is drawing near. Romantic news is coming soon.",
+		"work": "A job proposal or offer appears. Quick action is needed.",
+		"health": "High energy. A good time to start a treatment.",
+		"synthesis": ["novelty", "speed", "approach"]
+	},
+	{
+		"name": "Clover",
+		"playingCard": "6 of diamonds",
+		"keywords": ["luck", "opportunity", "small joys"],
+		"meaning": "Small fortunes and everyday blessings. Luck that is brief but genuine. Enjoy the simple moments.",
+		"love": "Small gestures of affection bring happiness. A light, easygoing romance.",
+		"work": "A small but useful opportunity comes up. Don't underestimate it.",
+		"health": "Recovery goes well. Spirit and energy return.",
+		"synthesis": ["luck", "lightness", "joy"]
+	},
+	{
+		"name": "Ship",
+		"playingCard": "10 of spades",
+		"keywords": ["travel", "distance", "trade"],
+		"meaning": "Journeys, relocations and business from afar. The horizon widens. Changes coming from far away.",
+		"love": "A long distance relationship or one with a foreigner. A temporary separation.",
+		"work": "International business or a work trip. Promising trade.",
+		"health": "A change of scenery may help. Consider alternative treatments.",
+		"synthesis": ["movement", "expansion", "distance"]
+	},
+	{
+		"name": "House",
+		"playingCard": "king of hearts",
+		"keywords": ["home", "security", "family"],
+		"meaning": "Stability, protection and roots. Home life is in focus. Property and belonging.",
+		"love": "A steady union and shared life. A wish to start a family or move in together.",
+		"work": "Your own business or working from home. A stable workplace.",
+		"health": "Care at home. Comfort and recovery among family.",
+		"synthesis": ["stability", "home", "protection"]
+	},
+	{
+		"name": "Tree",
+		"playingCard": "7 of hearts",
+		"keywords": ["health", "growth", "roots"],
+		"meaning": "Slow, solid growth. Health and vitality. Connection with ancestors and origins. Patience.",
+		"love": "A lasting relationship with deep roots. Love that matures over time.",
+		"work": "A solid career that grows step by step. Long term investments.",
+		"health": "Overall health is in focus. Treat your body with care and patience.",
+		"synthesis": ["growth", "health", "patience"]
+	},
+	{
+		"name": "Clouds",
+		"playingCard": "king of clubs",
+		"keywords": ["confusion", "uncertainty", "obstacle"],
+		"meaning": "A hazy, confusing situation. A temporary lack of clarity. The storm will pass, so wait.",
+		"love": "Misunderstandings and insecurity in the relationship. Communication needs to improve.",
+		"work": "Uncertainty at work. Put off big decisions until the view clears.",
+		"health": "An unclear diagnosis or a period of low energy. Get a second opinion.",
+		"synthesis": ["confusion", "waiting", "impermanence"]
+	},
+	{
+		"name": "Snake",
+		"playingCard": "queen of clubs",
+		"keywords": ["wisdom", "betrayal", "desire"],
+		"meaning": "A clever but manipulative person is nearby. Intense desire. Sharp intuition.",
+		"love": "Strong attraction, but possible betrayal. Jealousy and possessiveness appear.",
+		"work": "An envious colleague or unfair competition. Watch your back.",
+		"health": "Built up tension that needs release. Look after your nervous system.",
+		"synthesis": ["caution", "desire", "intelligence"]
+	},
+	{
+		"name": "Coffin",
+		"playingCard": "9 of diamonds",
+		"keywords": ["ending", "transformation", "rebirth"],
+		"meaning": "The close of a cycle. Deep transformation. What ends makes room for the new.",
+		"love": "The end of a relationship or of a phase in love. Let go to begin again.",
+		"work": "The end of a job or project. A career change is coming.",
+		"health": "A healing period: something has to die for the body to renew itself.",
+		"synthesis": ["closure", "transformation", "renewal"]
+	},
+	{
+		"name": "Bouquet",
+		"playingCard": "queen of spades",
+		"keywords": ["gift", "beauty", "recognition"],
+		"meaning": "Gifts, compliments and recognition arrive. Genuine happiness. Moments of joy and gratitude.",
+		"love": "Romance blossoms. Courtship, gifts and enchanting moments.",
+		"work": "Public recognition of your work. A reward or bonus is on its way.",
+		"health": "Health in full bloom. Inner and outer beauty stand out.",
+		"synthesis": ["joy", "recognition", "gifts"]
+	},
+	{
+		"name": "Scythe",
+		"playingCard": "jack of diamonds",
+		"keywords": ["decision", "cut", "harvest"],
+		"meaning": "A sharp, final decision. Reap what you have sown. Cut away what no longer serves you.",
+		"love": "A drastic decision in love. A necessary break with the past.",
+		"work": "Time to reap results or make a final career decision.",
+		"health": "Intervention is needed. Cut habits that harm your health.",
+		"synthesis": ["decision", "cut", "harvest"]
+	},
+	{
+		"name": "Whip",
+		"playingCard": "jack of clubs",
+		"keywords": ["conflict", "repetition", "energy"],
+		"meaning": "Recurring conflicts and heated arguments. Energy that needs direction. Patterns that repeat.",
+		"love": "Fights and tension in the relationship. A negative cycle repeats.",
+		"work": "A conflict ridden workplace. Intense, repetitive effort.",
+		"health": "Inflammation or chronic pain. Avoid excessive stress.",
+		"synthesis": ["conflict", "intensity", "pattern"]
+	},
+	{
+		"name": "Birds",
+		"playingCard": "7 of diamonds",
+		"keywords": ["conversation", "anxiety", "couple"],
+		"meaning": "Lots of talk and exchange of ideas. An elderly couple or established partners. Anxious thoughts.",
+		"love": "A couple bound by communication. Constant dialogue, sometimes too much.",
+		"work": "Meetings, negotiations and lots of dialogue. Communication is key.",
+		"health": "Anxiety and nerves run high. Care for your mind and breathe.",
+		"synthesis": ["communication", "couple", "restlessness"]
+	},
+	{
+		"name": "Child",
+		"playingCard": "jack of spades",
+		"keywords": ["beginning", "innocence", "new"],
+		"meaning": "Fresh, innocent beginnings. Something new and small is born. Openness to learning.",
+		"love": "A new love or the early phase of a romance. Naivety and purity of feeling.",
+		"work": "A new job, a project just starting, or a return to studying.",
+		"health": "A period of healing and rebirth. Treat your body gently.",
+		"synthesis": ["beginning", "novelty", "innocence"]
+	},
+	{
+		"name": "Fox",
+		"playingCard": "9 of clubs",
+		"keywords": ["cunning", "deceit", "adaptation"],
+		"meaning": "Cunning and shrewdness are needed. Someone may be deceiving you, or you may be fooling yourself.",
+		"love": "Be wary of appearances. Someone may not be who they claim to be.",
+		"work": "You need to be strategic. Watch out for opportunistic colleagues.",
+		"health": "Misleading symptoms. Seek an accurate diagnosis and question the obvious.",
+		"synthesis": ["cunning", "caution", "strategy"]
+	},
+	{
+		"name": "Bear",
+		"playingCard": "10 of clubs",
+		"keywords": ["strength", "authority", "protection"],
+		"meaning": "A figure of authority and protection. Raw but protective strength. Power and leadership are at play.",
+		"love": "A strong, protective partner. Beware of possessive jealousy.",
+		"work": "A boss or mentor stands out. Time to show leadership.",
+		"health": "High physical strength and immunity. Watch your weight and blood pressure.",
+		"synthesis": ["strength", "authority", "protection"]
+	},
+	{
+		"name": "Star",
+		"playingCard": "6 of hearts",
+		"keywords": ["hope", "guidance", "inspiration"],
+		"meaning": "Hope and inspiration light the way. Dreams that can come true. Divine guidance.",
+		"love": "Ideal, romantic love. Soulmates and spiritual connections.",
+		"work": "Success and recognition are on their way. Follow your guiding star.",
+		"health": "A favorable time for holistic and spiritual healing.",
+		"synthesis": ["hope", "inspiration", "guidance"]
+	},
+	{
+		"name": "Stork",
+		"playingCard": "queen of hearts",
+		"keywords": ["change", "birth", "transition"],
+		"meaning": "A big change is coming. A new life cycle is born. A positive, long awaited transformation.",
+		"love": "A fresh start in love. A possible pregnancy or the arrival of a baby.",
+		"work": "A job change or promotion. A new professional chapter begins.",
+		"health": "Good health news. Pregnancy or physical renewal.",
+		"synthesis": ["change", "rebirth", "transition"]
+	},
+	{
+		"name": "Dog",
+		"playingCard": "10 of hearts",
+		"keywords": ["friendship", "loyalty", "trust"],
+		"meaning": "A faithful, loyal friend is present. Trust that doesn't disappoint. Unconditional support.",
+		"love": "A relationship built on friendship and deep loyalty.",
+		"work": "A trusted colleague or partner. Harmonious teamwork.",
+		"health": "Emotional support from friends helps healing.",
+		"synthesis": ["loyalty", "friendship", "trust"]
+	},
+	{
+		"name": "Tower",
+		"playingCard": "6 of spades",
+		"keywords": ["solitude", "institution", "isolation"],
+		"meaning": "Solitude, chosen or imposed. Large institutions, laws and structures. Temporary isolation.",
+		"love": "Loneliness in love. Emotional barriers make intimacy hard.",
+		"work": "A large company, government, or a solitary career. A ceiling on growth.",
+		"health": "Isolation that affects mental health. Seek connection.",
+		"synthesis": ["isolation", "structure", "solitude"]
+	},
+	{
+		"name": "Garden",
+		"playingCard": "8 of spades",
+		"keywords": ["social", "public", "community"],
+		"meaning": "An active social life and public gatherings. Community and events. Your public image is at stake.",
+		"love": "Romance starts at social events. A relationship in the public eye.",
+		"work": "Networking and professional visibility. Work with the public.",
+		"health": "Outdoor and group activities benefit your health.",
+		"synthesis": ["socializing", "public", "community"]
+	},
+	{
+		"name": "Mountain",
+		"playingCard": "8 of clubs",
+		"keywords": ["obstacle", "challenge", "perseverance"],
+		"meaning": "A big obstacle on the path. Overcoming it takes perseverance. The challenge builds character.",
+		"love": "Serious difficulties in the relationship. Resistance from others.",
+		"work": "A temporary career block. Perseverance will pay off.",
+		"health": "A serious illness that takes determination to overcome.",
+		"synthesis": ["obstacle", "challenge", "strength"]
+	},
+	{
+		"name": "Crossroads",
+		"playingCard": "queen of diamonds",
+		"keywords": ["choice", "decision", "fork"],
+		"meaning": "Paths cross and a choice is unavoidable. Two directions, only one can be taken. Decide.",
+		"love": "A choice between two suitors or two paths in love.",
+		"work": "An important career decision. Two professional paths open up.",
+		"health": "A decision about treatment. Two options: trust your intuition.",
+		"synthesis": ["choice", "decision", "fork"]
+	},
+	{
+		"name": "Mice",
+		"playingCard": "7 of clubs",
+		"keywords": ["loss", "theft", "decay"],
+		"meaning": "Something is slowly being drained. Accumulated losses and wear. Protect what has value.",
+		"love": "Wear and tear in the relationship. Small lies erode trust.",
+		"work": "Financial losses or stolen ideas. Protect your work.",
+		"health": "Energy is slipping away. Look after your diet and sleep.",
+		"synthesis": ["loss", "wear", "caution"]
+	},
+	{
+		"name": "Heart",
+		"playingCard": "jack of hearts",
+		"keywords": ["love", "emotion", "feeling"],
+		"meaning": "Love in all its depth. Intense, true feelings. The heart speaks loudest.",
+		"love": "Genuine, passionate love. A declaration of feelings. A partnership of the heart.",
+		"work": "Work at what you love. Passion for what you do brings success.",
+		"health": "Heart health is in focus. Care for your emotions to care for your body.",
+		"synthesis": ["love", "emotion", "passion"]
+	},
+	{
+		"name": "Ring",
+		"playingCard": "ace of clubs",
+		"keywords": ["commitment", "contract", "alliance"],
+		"meaning": "Formal commitment and a lasting alliance. Signed contracts. A sealed union.",
+		"love": "Engagement, marriage or a serious commitment. Love becomes official.",
+		"work": "An important contract is signed. A long term professional partnership.",
+		"health": "Commitment to a health routine. A long term treatment.",
+		"synthesis": ["commitment", "contract", "alliance"]
+	},
+	{
+		"name": "Book",
+		"playingCard": "10 of diamonds",
+		"keywords": ["secret", "study", "knowledge"],
+		"meaning": "Hidden knowledge and kept secrets. Study and research are needed. A revelation to come.",
+		"love": "Secrets in the relationship. Something hasn't been revealed yet. Be patient.",
+		"work": "Study and training are essential now. Privileged information.",
+		"health": "The diagnosis is still incomplete. Research and learn about your condition.",
+		"synthesis": ["secret", "knowledge", "revelation"]
+	},
+	{
+		"name": "Letter",
+		"playingCard": "7 of spades",
+		"keywords": ["message", "news", "document"],
+		"meaning": "An important message, letter or document arrives. Written communication stands out.",
+		"love": "A love message or romantic news. A declaration in writing.",
+		"work": "A contract, proposal or official answer is on its way.",
+		"health": "Test results or a medical report arrive soon.",
+		"synthesis": ["message", "document", "news"]
+	},
+	{
+		"name": "Man",
+		"playingCard": "ace of hearts",
+		"keywords": ["man", "querent", "masculine"],
+		"meaning": "A central male figure in the question. May represent the querent himself or an important man.",
+		"love": "The man in the love situation. Traits of the partner.",
+		"work": "A male colleague, boss or partner stands out.",
+		"health": "Men's health is in focus. Pay attention to male health.",
+		"synthesis": ["masculine", "protagonist", "strength"]
+	},
+	{
+		"name": "Woman",
+		"playingCard": "ace of spades",
+		"keywords": ["woman", "querent", "feminine"],
+		"meaning": "A central female figure in the question. May represent the querent herself or an important woman.",
+		"love": "The woman in the love situation. Traits of the partner.",
+		"work": "A female colleague, boss or partner stands out.",
+		"health": "Women's health is in focus. Pay attention to female health.",
+		"synthesis": ["feminine", "protagonist", "intuition"]
+	},
+	{
+		"name": "Lilies",
+		"playingCard": "king of spades",
+		"keywords": ["peace", "maturity", "purity"],
+		"meaning": "Peace and harmony arrive after effort. Maturity and the wisdom of experience. Purity of intention.",
+		"love": "Mature, calm and harmonious love. Emotional stability.",
+		"work": "A mature, respected career. Work with ethics and harmony.",
+		"health": "A time of peace and quiet recovery. Stable health.",
+		"synthesis": ["peace", "harmony", "maturity"]
+	},
+	{
+		"name": "Sun",
+		"playingCard": "ace of diamonds",
+		"keywords": ["success", "clarity", "vitality"],
+		"meaning": "Great success and total clarity. Vital energy at its peak. Everything that was dark lights up.",
+		"love": "Radiant, happy love. A golden period in the relationship.",
+		"work": "Full success, recognition and prosperity. Shine!",
+		"health": "Excellent health and abundant energy. A time of great vitality.",
+		"synthesis": ["success", "clarity", "vitality"]
+	},
+	{
+		"name": "Moon",
+		"playingCard": "8 of hearts",
+		"keywords": ["fame", "intuition", "emotion"],
+		"meaning": "Public recognition and fame. Deep emotions and sharp intuition. The unconscious speaks.",
+		"love": "Deep, emotional love. Intuition guides the heart. Intense romance.",
+		"work": "Recognition in a creative career. Work with art or mystery.",
+		"health": "Emotional health is in focus. Hormonal cycles and sleep deserve attention.",
+		"synthesis": ["intuition", "emotion", "fame"]
+	},
+	{
+		"name": "Key",
+		"playingCard": "8 of diamonds",
+		"keywords": ["solution", "destiny", "opening"],
+		"meaning": "The solution exists and is within reach. A door opens. Destiny is on your side. Access granted.",
+		"love": "The key to the other's heart is found. The relationship is unlocked.",
+		"work": "The solution to the work problem is clear. A door of opportunity opens.",
+		"health": "You find what was blocking healing. An effective treatment is found.",
+		"synthesis": ["solution", "opening", "destiny"]
+	},
+	{
+		"name": "Fish",
+		"playingCard": "king of diamonds",
+		"keywords": ["money", "flow", "abundance"],
+		"meaning": "A favorable cash flow. Abundance and material prosperity. Business flows well.",
+		"love": "Abundant, generous love. A partner who provides material security.",
+		"work": "Positive finances. Business and investments flow well.",
+		"health": "Body fluids and circulation are in focus. Stay hydrated and mind your metabolism.",
+		"synthesis": ["abundance", "flow", "prosperity"]
+	},
+	{
+		"name": "Anchor",
+		"playingCard": "9 of spades",
+		"keywords": ["stability", "perseverance", "steadiness"],
+		"meaning": "Stability earned through effort. Perseverance that finally finds a safe harbor.",
+		"love": "A stable, lasting relationship. Love that anchors and sustains.",
+		"work": "A solid, secure position. A stable job for a long time.",
+		"health": "Stable health after a hard period. Persistence heals.",
+		"synthesis": ["stability", "security", "persistence"]
+	},
+	{
+		"name": "Cross",
+		"playingCard": "6 of clubs",
+		"keywords": ["burden", "destiny", "sacrifice"],
+		"meaning": "An unavoidable burden that must be carried. Karma and destiny at work. A sacrifice that transforms.",
+		"love": "Sacrifice for love. A relationship that demands total dedication.",
+		"work": "Hard work and heavy responsibility. Calling versus obligation.",
+		"health": "A chronic condition that calls for acceptance and adaptation.",
+		"synthesis": ["burden", "destiny", "sacrifice"]
+	}
+]
