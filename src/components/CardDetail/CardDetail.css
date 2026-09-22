@@ -107,6 +107,13 @@
 	transform: scale(0.94);
 }
 
+.card-detail-toolbar {
+	position: fixed;
+	top: max(14px, env(safe-area-inset-top));
+	right: max(16px, env(safe-area-inset-right));
+	z-index: 2;
+}
+
 .card-detail-close {
 	position: fixed;
 	top: max(14px, env(safe-area-inset-top));

@@ -9,6 +9,7 @@ import { type CardData, SUITS, type Suit } from '../../data/cards.ts'
 import { feedback } from '../../feedback.ts'
 import { m } from '../../paraglide/messages.js'
 import { withViewTransition } from '../../viewTransition.ts'
+import { Toolbar } from '../Toolbar/Toolbar.tsx'
 import './Gallery.css'
 
 const MAX_TILT_DEG = 10
@@ -142,19 +143,22 @@ export function Gallery({ cards, activeId, inert, onSelect }: GalleryProps) {
 			inert={inert}
 		>
 			<div className="gallery-content">
-				<fieldset className="gallery-view">
-					<legend>{m.view_label()}</legend>
-					{VIEWS.map(({ id, label }) => (
-						<button
-							key={id}
-							type="button"
-							aria-pressed={view === id}
-							onClick={() => switchView(id)}
-						>
-							{label()}
-						</button>
-					))}
-				</fieldset>
+				<header className="gallery-header">
+					<fieldset className="gallery-view">
+						<legend>{m.view_label()}</legend>
+						{VIEWS.map(({ id, label }) => (
+							<button
+								key={id}
+								type="button"
+								aria-pressed={view === id}
+								onClick={() => switchView(id)}
+							>
+								{label()}
+							</button>
+						))}
+					</fieldset>
+					<Toolbar />
+				</header>
 				{view === 'deck' ? (
 					<div className="gallery-grid">{cards.map(renderCard)}</div>
 				) : (

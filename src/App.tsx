@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { CardDetail } from './components/CardDetail/CardDetail.tsx'
 import { Gallery } from './components/Gallery/Gallery.tsx'
-import { Toolbar } from './components/Toolbar/Toolbar.tsx'
 import { CARDS, DECKS } from './data/cards.ts'
 import { feedback } from './feedback.ts'
 import { getLocale } from './paraglide/runtime.js'
@@ -65,7 +64,6 @@ export function App() {
 
 	return (
 		<>
-			<Toolbar />
 			<Gallery
 				cards={cards}
 				activeId={selectedId === null ? returnId : null}

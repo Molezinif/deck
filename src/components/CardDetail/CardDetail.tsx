@@ -3,6 +3,7 @@ import type { CardData } from '../../data/cards.ts'
 import { m } from '../../paraglide/messages.js'
 import { useKeyDown } from '../../useKeyDown.ts'
 import { CardContent } from '../CardContent/CardContent.tsx'
+import { Toolbar } from '../Toolbar/Toolbar.tsx'
 import './CardDetail.css'
 
 const CardShowcase = lazy(() =>
@@ -78,6 +79,9 @@ export function CardDetail({
 			>
 				×
 			</button>
+			<div className="card-detail-toolbar">
+				<Toolbar />
+			</div>
 			<div className="card-detail-layout">
 				<div className="card-detail-stage">
 					<div ref={slot} className="card-detail-slot" />

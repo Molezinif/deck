@@ -15,10 +15,18 @@
 		max(20px, env(safe-area-inset-left));
 }
 
+.gallery-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 28px;
+}
+
 .gallery-view {
 	display: inline-flex;
 	gap: 2px;
-	margin: 0 0 28px;
+	margin: 0;
 	padding: 3px;
 	border: 1px solid var(--hairline);
 	border-radius: 999px;
