@@ -8,6 +8,7 @@ vi.mock('@react-three/drei', () => ({ useCursor: () => {} }))
 const FRAME = 1 / 60
 const RESTING: Pose = { position: [0, 0, 0], rotation: [Math.PI, 0, 0] }
 const FOCUSED: Pose = { position: [0, 1, 1], rotation: [Math.PI + 0.35, 0, 0] }
+const FACE_DOWN: Pose = { position: [0, 1, 0], rotation: [Math.PI, 0, Math.PI] }
 
 function cardProps(focused: boolean) {
 	return {
@@ -74,6 +75,19 @@ describe('Card at rest', () => {
 		await renderer.advanceFrames(60, FRAME)
 		expect(card.instance.rotation.z).toBe(0)
 		expect(pointer.target.setPointerCapture).not.toHaveBeenCalled()
+	})
+})
+
+describe('Card entering', () => {
+	it('starts from the given pose and moves into place', async () => {
+		const renderer = await ReactThreeTestRenderer.create(
+			<Card {...cardProps(false)} from={FACE_DOWN} />,
+		)
+		const card = renderer.scene.children[0]
+		expect(card.instance.rotation.z).toBeCloseTo(Math.PI)
+		await renderer.advanceFrames(240, FRAME)
+		expect(card.instance.rotation.z).toBeCloseTo(0, 2)
+		expect(card.instance.position.y).toBeCloseTo(0, 2)
 	})
 })
 
@@ -144,6 +158,14 @@ describe('Focused card', () => {
 		await renderer.advanceFrames(60, FRAME)
 		expect(card.instance.rotation.z).toBeCloseTo(0)
 		expect(pointer.target.releasePointerCapture).toHaveBeenCalledWith(1)
+	})
+
+	it('settles on the nearest face when released mid-turn', async () => {
+		const { renderer, card, drag, pointer } = await renderCard(true)
+		await drag(200, 0)
+		await renderer.fireEvent(card, 'pointerUp', pointer)
+		await renderer.advanceFrames(240, FRAME)
+		expect(card.instance.rotation.z).toBeCloseTo(Math.PI, 2)
 	})
 
 	it('unwinds its spin the short way when it leaves the focus', async () => {

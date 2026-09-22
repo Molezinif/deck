@@ -9,6 +9,8 @@ const HOVER_LIFT = 0.04
 const SPEED = 8
 const DRAG_SENSITIVITY = 0.01
 const MAX_TILT = 0.8
+const FLICK_MOMENTUM = 6
+const FLICK_WINDOW_MS = 80
 const FINISH = { roughness: 0.55, clearcoat: 0.5, clearcoatRoughness: 0.3 }
 
 export type Pose = {
@@ -20,18 +22,27 @@ type CardProps = {
 	front: Texture
 	back: Texture
 	pose: Pose
+	from?: Pose
 	focused: boolean
 	onSelect: () => void
 }
 
-export function Card({ front, back, pose, focused, onSelect }: CardProps) {
+export function Card({
+	front,
+	back,
+	pose,
+	from,
+	focused,
+	onSelect,
+}: CardProps) {
 	const ref = useRef<Group>(null)
-	const [initial] = useState(pose)
+	const [initial] = useState(from ?? pose)
 	const [target] = useState(() => new Vector3())
 	const [hovered, setHovered] = useState(false)
 	const spin = useRef({ x: 0, z: 0 })
 	const dragging = useRef(false)
 	const lastPointer = useRef({ x: 0, y: 0 })
+	const flick = useRef({ speed: 0, at: 0 })
 	useCursor(hovered, focused ? 'grab' : 'pointer')
 
 	useFrame((_, delta) => {
@@ -75,7 +86,8 @@ export function Card({ front, back, pose, focused, onSelect }: CardProps) {
 		const deltaX = event.clientX - lastPointer.current.x
 		const deltaY = event.clientY - lastPointer.current.y
 		lastPointer.current = { x: event.clientX, y: event.clientY }
-		spin.current.z += deltaX * DRAG_SENSITIVITY
+		flick.current = { speed: deltaX * DRAG_SENSITIVITY, at: event.timeStamp }
+		spin.current.z += flick.current.speed
 		spin.current.x = MathUtils.clamp(
 			spin.current.x + deltaY * DRAG_SENSITIVITY,
 			-MAX_TILT,
@@ -83,9 +95,17 @@ export function Card({ front, back, pose, focused, onSelect }: CardProps) {
 		)
 	}
 
+	// On release the card keeps some of the flick's momentum and settles on
+	// whichever face it ends up closer to, instead of stopping at an angle.
 	const handleUp = (event: ThreeEvent<PointerEvent>) => {
+		if (!dragging.current) return
 		dragging.current = false
 		;(event.target as Element).releasePointerCapture(event.pointerId)
+		const { speed, at } = flick.current
+		const momentum =
+			event.timeStamp - at < FLICK_WINDOW_MS ? speed * FLICK_MOMENTUM : 0
+		const settled = spin.current.z + momentum
+		spin.current = { x: 0, z: Math.round(settled / Math.PI) * Math.PI }
 	}
 
 	return (
